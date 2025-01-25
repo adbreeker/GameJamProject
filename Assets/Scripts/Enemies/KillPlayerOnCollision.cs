@@ -10,6 +10,6 @@ public class KillPlayerOnCollision : MonoBehaviour
         float distance = Vector3.Distance(transform.position, playerPos);
 
         //IT DEPENDS ON CHARACTER CONTROLLERS RADIUS WHICH FOR NOW IS 0.25!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        if (distance < 0.45f) PlayerController.activePlayer.OnPlayerDeath?.Invoke();
+        if (distance < 0.45f) PlayerBehavior.activePlayer.HitPlayer(int.MaxValue);
     }
 }

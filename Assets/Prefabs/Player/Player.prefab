@@ -43,8 +43,8 @@ GameObject:
   - component: {fileID: 7504600954240996491}
   - component: {fileID: 8883865499674074090}
   - component: {fileID: 2998737005432036639}
+  - component: {fileID: 6859583138707710920}
   - component: {fileID: 3044635048772275547}
-  - component: {fileID: 3389245022680816815}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -147,6 +147,35 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6859583138707710920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6397571682609507130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9695f076c35a71b458cd84b9b50ff647, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _OnHit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6859583138707710920}
+        m_TargetAssemblyTypeName: PlayerBehavior, Assembly-CSharp
+        m_MethodName: HitPlayer
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  <maxHealth>k__BackingField: 10
+  <currentHealth>k__BackingField: 10
 --- !u!114 &3044635048772275547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -159,7 +188,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f369e93e8ae6d04bb26b8289418598d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 5
+  movementSpeed: 3.5
   sprintSpeedMultiplier: 1.5
   crouchSpeedMultiplier: 0.5
   gravityForce: -10
@@ -167,36 +196,9 @@ MonoBehaviour:
   crouchingSpeed: 2
   uncrouchingSpeed: 3
   _playerCamera: {fileID: 6675697866105231865}
-  viewSensitivity: 60
+  viewSensitivity: 100
   _shootingOrigin: {fileID: 499838515061896793}
   _projectilePrefab: {fileID: 7457173310827220616, guid: c22cd5d274772674cb3a49c91c5b577a, type: 3}
---- !u!114 &3389245022680816815
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6397571682609507130}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c0a631d793fa944e8782524cd006083, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _OnHitEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3044635048772275547}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: HitPlayer
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &6675697866105231865
 GameObject:
   m_ObjectHideFlags: 0

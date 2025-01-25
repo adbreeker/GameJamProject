@@ -11,7 +11,7 @@ public class BackgroundMusic : MonoBehaviour
     private void Start()
     {
         WavesManager.Instance.OnNewWave += UpdateMusic;
-        PlayerController.activePlayer.OnPlayerDeath += SwapToDeathMusic;
+        PlayerBehavior.activePlayer.OnPlayerDeath += SwapToDeathMusic;
 
         _musicEvent.setParameterByName("death", 0);
         _musicEvent.setParameterByName("waves", 0);

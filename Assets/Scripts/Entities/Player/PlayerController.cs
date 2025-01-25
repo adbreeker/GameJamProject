@@ -1,12 +1,8 @@
 using System;
-using NaughtyAttributes;
 using UnityEngine;
-using UnityEngine.InputSystem.XR;
 
 public class PlayerController : MonoBehaviour
 {
-    public Action OnPlayerDeath;
-
     [Header("Movement variables:")]
     public float movementSpeed;
     [Range(1f, 2f)]
@@ -66,12 +62,6 @@ public class PlayerController : MonoBehaviour
         //actions
         Shooting();
     }
-
-    public void HitPlayer()
-    {
-        Debug.Log("Player was hit!");
-    }
-
     void Movement()
     {
         //walk direction

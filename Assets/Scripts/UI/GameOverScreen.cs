@@ -17,7 +17,7 @@ public class GameOverScreen : MonoBehaviour
 
     private void Start()
     {
-        PlayerController.activePlayer.OnPlayerDeath += ActivateGameOverScreen;
+        PlayerBehavior.activePlayer.OnPlayerDeath += ActivateGameOverScreen;
     }
 
     private void OnDestroy()

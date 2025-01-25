@@ -968,7 +968,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbebcd00b1ef87240989889ac2669ebf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerLayer: Player
 --- !u!114 &3668387794008542336
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -981,7 +980,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c0a631d793fa944e8782524cd006083, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _OnHitEvent:
+  _OnHit:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 6842236261484164151}
