@@ -42,12 +42,10 @@ public class ItemSpawner : MonoBehaviour
 
     void SpawnRandomItem()
     {
-        //Array items = Enum.GetValues(typeof(ItemType));
+        Array items = Enum.GetValues(typeof(ItemType));
+        ItemType randomItem = (ItemType)items.GetValue(UnityEngine.Random.Range(0, items.Length));
 
-        //ItemType randomItem = (ItemType)items.GetValue(UnityEngine.Random.Range(0, items.Length));
-
-
-        currentItem = ItemType.BUBBLE_TEA;// randomItem;
+        currentItem = randomItem;
 
         switch(currentItem)
         {
