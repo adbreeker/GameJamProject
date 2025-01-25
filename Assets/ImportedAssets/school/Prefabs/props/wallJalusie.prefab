@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7265846989723765081}
   - component: {fileID: 5823164268620141776}
   m_Layer: 10
-  m_Name: wall001
+  m_Name: wallJalusie
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
