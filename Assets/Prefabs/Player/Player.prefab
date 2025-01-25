@@ -176,6 +176,8 @@ MonoBehaviour:
         m_CallState: 2
   <maxHealth>k__BackingField: 10
   <currentHealth>k__BackingField: 10
+  <isPlayerDead>k__BackingField: 0
+  _healingPrefab: {fileID: 9017484664307500583, guid: ea854416577ce9e4a872172064d8f4b6, type: 3}
 --- !u!114 &3044635048772275547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -195,10 +197,12 @@ MonoBehaviour:
   crouchHeightMultiplier: 0.5
   crouchingSpeed: 2
   uncrouchingSpeed: 3
-  _playerCamera: {fileID: 6675697866105231865}
+  _playerCamera: {fileID: 8700194355445646484}
   viewSensitivity: 100
   _shootingOrigin: {fileID: 499838515061896793}
   _projectilePrefab: {fileID: 7457173310827220616, guid: c22cd5d274772674cb3a49c91c5b577a, type: 3}
+  interactionRange: 1.5
+  interactionRadius: 0.2
 --- !u!1 &6675697866105231865
 GameObject:
   m_ObjectHideFlags: 0

@@ -19,13 +19,18 @@ public class PlayerController : MonoBehaviour
     Vector3 _startScale;
 
     [Header("View variables:")]
-    [SerializeField] GameObject _playerCamera;
+    [SerializeField] Camera _playerCamera;
     public float viewSensitivity;
     Vector3 _viewRotation;
 
     [Header("Shooting:")]
     [SerializeField] Transform _shootingOrigin;
     [SerializeField] GameObject _projectilePrefab;
+
+    [Header("Interactions:")]
+    [SerializeField] float interactionRange;
+    [SerializeField] float interactionRadius;
+    GameObject _pointedInteraction;
 
     CharacterController _cc;
 
@@ -61,6 +66,8 @@ public class PlayerController : MonoBehaviour
 
         //actions
         Shooting();
+        CheckInteractions(interactionRange, interactionRadius);
+        Interaction();
     }
     void Movement()
     {
@@ -160,6 +167,74 @@ public class PlayerController : MonoBehaviour
         {
             GameObject bubble = Instantiate(_projectilePrefab, _shootingOrigin.transform.position, Quaternion.identity);
             bubble.GetComponent<BubbleProjectileController>().ShootInDirection(_playerCamera.transform.forward);
+        }
+    }
+
+    void CheckInteractions(float distance, float radius)
+    {
+        Ray ray = _playerCamera.ScreenPointToRay(new Vector3(Screen.width / 2f, Screen.height / 2f, 0));
+
+        Vector3 startPoint = ray.origin;
+        Vector3 endPoint = ray.origin + ray.direction * distance;
+
+        Collider[] hitColliders = Physics.OverlapCapsule(startPoint, endPoint, radius, LayerMask.GetMask("Interaction"), QueryTriggerInteraction.Collide);
+#if UNITY_EDITOR
+        DrawDebugCylinder(startPoint, endPoint, radius);
+#endif
+        if(hitColliders.Length > 0)
+        {
+            _pointedInteraction = hitColliders[0].gameObject;
+        }
+        else
+        {
+            _pointedInteraction = null;
+        }
+    }
+
+    void Interaction()
+    {
+        if (Input.GetKeyDown(KeyCode.E) && _pointedInteraction != null)
+        {
+            _pointedInteraction.GetComponent<ItemSpawner>()?.GetItem();
+        }
+    }
+
+    public void DrawDebugCylinder(Vector3 startPoint, Vector3 endPoint, float radius, int segments = 20)
+    {
+        // Vector representing the axis of the cylinder
+        Vector3 axis = endPoint - startPoint;
+        Vector3 axisNormalized = axis.normalized;
+
+        // Find any vector that is not parallel to the cylinder's axis
+        Vector3 perpendicularVector = Vector3.Cross(axisNormalized, Vector3.up);
+        if (perpendicularVector == Vector3.zero) // If the vector happened to be parallel to "up", choose a different vector
+        {
+            perpendicularVector = Vector3.Cross(axisNormalized, Vector3.right);
+        }
+        perpendicularVector.Normalize();
+
+        // Draw the center axis of the cylinder
+        Debug.DrawLine(startPoint, endPoint, Color.cyan);
+
+        // Draw the cross-section of the cylinder
+        for (int i = 0; i < segments; i++)
+        {
+            float angle = i * Mathf.PI * 2 / segments;
+            float nextAngle = (i + 1) * Mathf.PI * 2 / segments;
+
+            // Calculate points on the circle around startPoint and endPoint
+            Vector3 point1 = startPoint + Quaternion.AngleAxis(angle * Mathf.Rad2Deg, axisNormalized) * perpendicularVector * radius;
+            Vector3 point2 = startPoint + Quaternion.AngleAxis(nextAngle * Mathf.Rad2Deg, axisNormalized) * perpendicularVector * radius;
+
+            Vector3 point3 = endPoint + Quaternion.AngleAxis(angle * Mathf.Rad2Deg, axisNormalized) * perpendicularVector * radius;
+            Vector3 point4 = endPoint + Quaternion.AngleAxis(nextAngle * Mathf.Rad2Deg, axisNormalized) * perpendicularVector * radius;
+
+            // Draw the cross-sections (base and top of the cylinder)
+            Debug.DrawLine(point1, point2, Color.blue);
+            Debug.DrawLine(point3, point4, Color.blue);
+
+            // Draw lines connecting the two bases
+            Debug.DrawLine(point1, point3, Color.blue);
         }
     }
 }

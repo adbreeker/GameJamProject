@@ -6,6 +6,10 @@ public class PlayerBehavior : EntityBehavior
     [field: Header("Statistics:")]
     [field: SerializeField] public int maxHealth { get; private set; }
     [field: SerializeField] public int currentHealth { get; private set; }
+    [field: SerializeField] public bool isPlayerDead { get; private set; } = false;
+
+    [Header("Special effects:")]
+    [SerializeField] GameObject _healingPrefab;
 
     //listeners
     public Action OnPlayerDeath;
@@ -30,10 +34,13 @@ public class PlayerBehavior : EntityBehavior
 
     public void HitPlayer(int damage)
     {
+        if(isPlayerDead) { return; }
+
         currentHealth -= damage;
         if (currentHealth <= 0)
         {
             currentHealth = 0;
+            isPlayerDead = true;
             OnPlayerDeath?.Invoke();
         }
         OnPlayerHited?.Invoke();
@@ -41,7 +48,10 @@ public class PlayerBehavior : EntityBehavior
 
     public void HealPlayer(int heal)
     {
+        if (isPlayerDead) { return; }
+
         currentHealth += heal;
+        Instantiate(_healingPrefab, transform);
         if (currentHealth > maxHealth)
         {
             currentHealth = maxHealth;
