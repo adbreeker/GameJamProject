@@ -46,7 +46,6 @@ public class DyingEnemyState : EnemyState
         Tween fadeTween = _dyingSprite.DOFade(0, 0.2f);
         while (fadeTween.IsPlaying()) yield return null;
 
-        yield return null;
         Destroy(_stateMachine.gameObject);
     }
 }

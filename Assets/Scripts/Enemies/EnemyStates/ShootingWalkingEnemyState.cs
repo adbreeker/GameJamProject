@@ -54,10 +54,11 @@ public class ShootingWalkingEnemyState : EnemyState
             return;
         }
 
+        //RuntimeManager.PlayOneShotAttached(_shootingSound, _stateMachine.gameObject);
         GameObject bubble = Instantiate(_bubbleProjectilePrefab.gameObject, _gunPoint.position, Quaternion.identity);
-        bubble.GetComponent<BubbleProjectileController>().ShootInDirection(_gunPoint.forward, 7.5f);
+        bubble.GetComponent<BubbleProjectileController>().ShootInDirection(_gunPoint.forward, 5f);
 
-        _shootingCooldown = 0.5f;
+        _shootingCooldown = 1f;
     }
 
     private void ManageShootingCooldown()

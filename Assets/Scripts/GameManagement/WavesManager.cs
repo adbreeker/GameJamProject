@@ -1,7 +1,9 @@
 ﻿using System.Collections;
+using FMOD.Studio;
 using FMODUnity;
 using NaughtyAttributes;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
 
 public class WavesManager : MonoBehaviour
 {
@@ -12,9 +14,17 @@ public class WavesManager : MonoBehaviour
 
     [SerializeField] private GameObject _enemyPrefab;
     [SerializeField] private EventReference _newWaveSound;
+    [SerializeField] private EventReference _adaptiveMusic;
+    [Space]
+    [SerializeField] private float _addedTimePerWave = 10f;
+    [SerializeField] private int _addedEnemiesPerWave = 3;
+    [SerializeField] private float _firstWaveTime = 15f;
+    [SerializeField] private int _firstWaveEnemies = 3;
+    [SerializeField] private float _timeBeforFirstWave = 5f;
 
-    private float _currentStartingTimerValue = 5f;
-    private int _currentEnemySpawnNumber = 3;
+    private EventInstance _musicEvent;
+    private float _currentStartingTimerValue;
+    private int _currentEnemySpawnNumber;
 
     private void Awake()
     {
@@ -22,10 +32,24 @@ public class WavesManager : MonoBehaviour
         StartCoroutine(StartWaves());
     }
 
+    private void OnDestroy()
+    {
+        _musicEvent.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        _musicEvent.release();
+    }
+
+    public void SwapToDeathMusic()
+    {
+        _musicEvent.setParameterByName("death", 2);
+    }
+
     private IEnumerator StartWaves()
     {
+        _musicEvent = RuntimeManager.CreateInstance(_adaptiveMusic);
+        _musicEvent.start();
+
         WaveNumber = 0;
-        WaveTimer = _currentStartingTimerValue;
+        WaveTimer = _timeBeforFirstWave;
 
         while (WaveTimer > 0)
         {
@@ -33,7 +57,8 @@ public class WavesManager : MonoBehaviour
             yield return null;
         }
 
-        _currentStartingTimerValue = 45f;
+        _currentEnemySpawnNumber = _firstWaveEnemies;
+        _currentStartingTimerValue = _firstWaveTime;
         WaveNumber = 1;
         StartCoroutine(Waves());
     }
@@ -44,6 +69,7 @@ public class WavesManager : MonoBehaviour
         SpawnEnemies();
 
         WaveTimer = _currentStartingTimerValue;
+        if (WaveNumber < 5) _musicEvent.setParameterByName("waves", WaveNumber);
 
         while (WaveTimer > 0)
         {
@@ -51,9 +77,9 @@ public class WavesManager : MonoBehaviour
             yield return null;
         }
 
-        _currentStartingTimerValue += 15f;
+        _currentStartingTimerValue += _addedTimePerWave;
         WaveNumber += 1;
-        _currentEnemySpawnNumber += 3;
+        _currentEnemySpawnNumber += _addedEnemiesPerWave;
         StartCoroutine(Waves());
     }
 

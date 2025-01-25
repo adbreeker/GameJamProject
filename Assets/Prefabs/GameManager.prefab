@@ -124,8 +124,15 @@ MonoBehaviour:
   _enemyPrefab: {fileID: 7080000396846712905, guid: 87fcfbde05dc04943b26566b4a5c65ba, type: 3}
   _newWaveSound:
     Guid:
-      Data1: 1126516232
-      Data2: 1318345405
-      Data3: -680872546
-      Data4: 437586404
-    Path: event:/SFX_TestingSound
+      Data1: -1252259324
+      Data2: 1194712431
+      Data3: -166185332
+      Data4: 1284535780
+    Path: event:/ui
+  _adaptiveMusic:
+    Guid:
+      Data1: 1769916661
+      Data2: 1110222911
+      Data3: 1018441662
+      Data4: 638302142
+    Path: event:/muzyka

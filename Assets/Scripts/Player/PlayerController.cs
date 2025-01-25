@@ -1,9 +1,11 @@
+using System;
 using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.InputSystem.XR;
 
 public class PlayerController : MonoBehaviour
 {
+    public Action OnPlayerDeath;
 
     [Header("Movement variables:")]
     public float movementSpeed;
