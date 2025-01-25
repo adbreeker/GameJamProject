@@ -166,4 +166,4 @@ MonoBehaviour:
   _addedEnemiesPerWave: 3
   _firstWaveTime: 15
   _firstWaveEnemies: 3
-  _timeBeforFirstWave: 5
+  _timeBeforFirstWave: 10
