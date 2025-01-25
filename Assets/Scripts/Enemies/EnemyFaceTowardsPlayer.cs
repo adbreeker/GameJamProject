@@ -3,7 +3,6 @@ using UnityEngine;
 public class EnemyFaceTowardsPlayer : MonoBehaviour
 {
     [SerializeField] private Transform _visuals;
-    [SerializeField] private Transform _player; //later will be swapped for player singleton
 
     private bool _shouldLookAtPlayer = true;
 
@@ -19,7 +18,7 @@ public class EnemyFaceTowardsPlayer : MonoBehaviour
 
     private void LookAtPlayer()
     {
-        Vector3 lookVector = _player.position - _visuals.position;
+        Vector3 lookVector = PlayerController.activePlayer.transform.position - _visuals.position;
         lookVector.y = 0;
 
         Quaternion rotation = Quaternion.LookRotation(lookVector);

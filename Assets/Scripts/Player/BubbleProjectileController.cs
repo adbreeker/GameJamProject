@@ -8,17 +8,17 @@ public class BubbleProjectileController : MonoBehaviour
     [SerializeField] LayerMask _collisionLayers;
     [SerializeField, Layer] string _entityTarget;
 
-    public void ShootInDirection(Vector3 direction)
+    public void ShootInDirection(Vector3 direction, float force = 7.5f)
     {
-        _rigidbody.AddForce(direction * 10f, ForceMode.Impulse);
-        Debug.Log(direction + "  " + _rigidbody.linearVelocity);
+        _rigidbody.AddForce(direction * force, ForceMode.Impulse);
+        //Debug.Log(direction + "  " + _rigidbody.linearVelocity);
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if((_collisionLayers.value & (1 << other.gameObject.layer)) != 0)
         {
-            Debug.Log("bubble collides with - " + other.gameObject.name);
+            //Debug.Log("bubble collides with - " + other.gameObject.name);
             Instantiate(_impactPrefab,
                 (transform.position - _rigidbody.linearVelocity.normalized*0.3f),
                 Quaternion.identity);

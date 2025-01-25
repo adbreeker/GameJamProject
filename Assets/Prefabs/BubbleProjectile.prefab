@@ -153,5 +153,5 @@ MonoBehaviour:
   _impactPrefab: {fileID: 7809048884419005517, guid: f21439508b206214f9c8b3c22da20717, type: 3}
   _collisionLayers:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 1280
   _entityTarget: Enemy
