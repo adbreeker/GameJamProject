@@ -18,8 +18,8 @@ public class WavesManager : MonoBehaviour
 
     [SerializeField] private EventReference _newWaveSound;
     [SerializeField] private List<GameObject> _enemyPrefabs;
-    [SerializeField] private float _maxSpawnDistanceFromPlayer = 30f;
-    [SerializeField] private float _minSpawnDistanceFromPlayer = 10f;
+    [SerializeField] private float _maxSpawnDistanceFromPlayer;
+    [SerializeField] private float _minSpawnDistanceFromPlayer;
     [Space]
     [SerializeField] private float _addedTimePerWave = 10f;
     [SerializeField] private int _addedEnemiesPerWave = 3;
