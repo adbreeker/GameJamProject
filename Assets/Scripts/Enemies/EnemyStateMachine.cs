@@ -41,7 +41,7 @@ public class EnemyStateMachine : MonoBehaviour
 
         if (CurrentState == givenState)
         {
-            Debug.LogWarning("Trying to change state to the one that is already active!");
+            //Debug.LogWarning("Trying to change state to the one that is already active!");
             return;
         }
 

@@ -17,13 +17,6 @@ public class AudioManager : MonoBehaviour
         FmodBuses.Master.stopAllEvents(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
     }
 
-    public EventInstance CreateSpatializedInstance(EventReference eventRef, Transform audioParent)
-    {
-        EventInstance eventInstance = RuntimeManager.CreateInstance(eventRef);
-        RuntimeManager.AttachInstanceToGameObject(eventInstance, audioParent);
-        return eventInstance;
-    }
-
     public EventInstance PlayOneShotSpatialized(EventReference eventRef, Transform audioParent)
     {
         EventInstance eventInstance = RuntimeManager.CreateInstance(eventRef);
