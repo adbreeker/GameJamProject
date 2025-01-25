@@ -67,6 +67,11 @@ public class PlayerController : MonoBehaviour
         Shooting();
     }
 
+    public void HitPlayer()
+    {
+        Debug.Log("Player was hit!");
+    }
+
     void Movement()
     {
         //walk direction

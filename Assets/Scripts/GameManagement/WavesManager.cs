@@ -55,12 +55,30 @@ public class WavesManager : MonoBehaviour
         OnNewWave?.Invoke();
 
         RuntimeManager.PlayOneShot(_newWaveSound);
-        SpawnEnemies();
+
+        SpawnOneThirdEnemies();
+        int timesSpawnedOneThird = 1;
+        float spawnInterval = _currentStartingTimerValue / 3f;
+        float currentSpawnInterval = spawnInterval;
 
         WaveTimer = _currentStartingTimerValue;
 
         while (WaveTimer > 0)
         {
+            if (timesSpawnedOneThird < 3)
+            {
+                if (currentSpawnInterval > 0)
+                {
+                    currentSpawnInterval -= Time.deltaTime;
+                }
+                else
+                {
+                    timesSpawnedOneThird++;
+                    currentSpawnInterval = spawnInterval;
+                    SpawnOneThirdEnemies();
+                }
+            }
+
             WaveTimer -= Time.deltaTime;
             yield return null;
         }
@@ -71,10 +89,13 @@ public class WavesManager : MonoBehaviour
         StartCoroutine(Waves());
     }
 
-    private void SpawnEnemies()
+    private void SpawnOneThirdEnemies()
     {
-        for(int i = 0; i < _currentEnemySpawnNumber; i++)
+        for(int i = 0; i < _currentEnemySpawnNumber / 3; i++)
         {
+            GameObject spawnedEnemy = Instantiate(_enemyPrefabs[0]);
+            spawnedEnemy.transform.position = new Vector3(-2.9f, -4.7f, 4.7f);
+
             //samplujemy nav mesh
             //spawnujemy tylko w odpowiedniej odleglosci od gracza
         }
