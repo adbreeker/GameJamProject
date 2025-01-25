@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using FMOD.Studio;
 using FMODUnity;
 using NaughtyAttributes;
@@ -14,7 +15,7 @@ public class WavesManager : MonoBehaviour
     [ShowNativeProperty] public float WaveTimer { get; private set; }
     [ShowNativeProperty] public int WaveNumber { get; private set; }
 
-    [SerializeField] private GameObject _enemyPrefab;
+    [SerializeField] private List<GameObject> _enemyPrefabs;
     [SerializeField] private EventReference _newWaveSound;
     [Space]
     [SerializeField] private float _addedTimePerWave = 10f;
