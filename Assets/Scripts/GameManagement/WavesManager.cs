@@ -96,11 +96,12 @@ public class WavesManager : MonoBehaviour
     {
         for (int i = 0; i < _currentEnemySpawnNumber / 3; i++)
         {
-            int randomChoice = UnityEngine.Random.Range(0, _enemyPrefabs.Count - 1);
+            int randomChoice = UnityEngine.Random.Range(0, _enemyPrefabs.Count);
             GameObject spawnedEnemy = Instantiate(_enemyPrefabs[randomChoice]);
 
             float distanceToPlayer = 0f;
             Vector3 randomPos = Vector3.zero;
+            Vector3 randomPosOnNavMesh = Vector3.zero;
 
             while (distanceToPlayer < _minSpawnDistanceFromPlayer)
             {
@@ -109,11 +110,11 @@ public class WavesManager : MonoBehaviour
                     _minSpawnDistanceFromPlayer,
                     _maxSpawnDistanceFromPlayer);
 
-                distanceToPlayer = Vector3.Distance(randomPos, PlayerController.activePlayer.transform.position);
-            }
+                NavMesh.SamplePosition(randomPos, out NavMeshHit hit, Mathf.Infinity, NavMesh.AllAreas);
+                randomPosOnNavMesh = hit.position;
 
-            NavMesh.SamplePosition(randomPos, out NavMeshHit hit, Mathf.Infinity, NavMesh.AllAreas);
-            Vector3 randomPosOnNavMesh = hit.position;
+                distanceToPlayer = Vector3.Distance(randomPosOnNavMesh, PlayerController.activePlayer.transform.position);
+            }
 
             spawnedEnemy.transform.position = randomPosOnNavMesh;
         }

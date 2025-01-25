@@ -30,7 +30,8 @@ public class SpawningEnemyState : EnemyState
 
     private IEnumerator SpawningAnimation()
     {
-        //AudioManager.Instance.PlayOneShotSpatialized(_spawningSound, _stateMachine.transform);
+        AudioManager.Instance.PlayOneShotSpatialized(_spawningSound, _stateMachine.transform);
+
         yield return new WaitForSeconds(_animationDuration);
         //some kind of particle
         _stateMachine.ChangeState(_walkingState);
