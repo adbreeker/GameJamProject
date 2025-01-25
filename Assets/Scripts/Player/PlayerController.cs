@@ -129,7 +129,7 @@ public class PlayerController : MonoBehaviour
                 transform.localScale = Vector3.MoveTowards(
                     transform.localScale,
                     new Vector3(_startScale.x, _startScale.y, _startScale.z),
-                    Mathf.Min(uncrouchingSpeed * Time.deltaTime, possibleStep));
+                    Mathf.Min(uncrouchingSpeed * Time.deltaTime, possibleStep * 0.1f));
             }
             else
             {
