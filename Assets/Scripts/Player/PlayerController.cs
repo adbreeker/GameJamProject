@@ -23,6 +23,10 @@ public class PlayerController : MonoBehaviour
     public float viewSensitivity;
     Vector3 _viewRotation;
 
+    [Header("Shooting:")]
+    [SerializeField] Transform _shootingOrigin;
+    [SerializeField] GameObject _projectilePrefab;
+
     CharacterController _cc;
 
     void Start()
@@ -42,6 +46,9 @@ public class PlayerController : MonoBehaviour
         View();
         Gravity();
         _cc.Move(_playerVelocity * Time.deltaTime);
+
+        //actions
+        Shooting();
     }
 
     void Movement()
@@ -118,5 +125,14 @@ public class PlayerController : MonoBehaviour
         }
 
         _playerVelocity.y += gravityForce * Time.deltaTime;
+    }
+
+    void Shooting()
+    {
+        if(Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            GameObject bubble = Instantiate(_projectilePrefab, _shootingOrigin.transform.position, Quaternion.identity);
+            bubble.GetComponent<BubbleProjectileController>().ShootInDirection(_playerCamera.transform.forward);
+        }
     }
 }
