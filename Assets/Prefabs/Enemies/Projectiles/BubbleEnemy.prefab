@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2252867655004290839}
   - component: {fileID: 5183817983729595931}
   m_Layer: 0
-  m_Name: BubbleProjectile
+  m_Name: BubbleEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -67,7 +67,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 39b6fde8906239a43b7c95762b978bb3, type: 2}
+  - {fileID: 2100000, guid: 7c5122187665ec94a80b0eaf96fed962, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -150,8 +150,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 2252867655004290839}
-  _impactPrefab: {fileID: 7809048884419005517, guid: f21439508b206214f9c8b3c22da20717, type: 3}
+  _impactPrefab: {fileID: 7809048884419005517, guid: 661e0998c9693684f8c154cb39157450, type: 3}
   _collisionLayers:
     serializedVersion: 2
-    m_Bits: 1280
-  _entityTarget: Enemy
+    m_Bits: 1088
+  _entityTarget: Player

@@ -121,3 +121,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 823fab882cbb5db48b6d9a833df0bf78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _enemyPrefab: {fileID: 7080000396846712905, guid: 87fcfbde05dc04943b26566b4a5c65ba, type: 3}
+  _newWaveSound:
+    Guid:
+      Data1: 1126516232
+      Data2: 1318345405
+      Data3: -680872546
+      Data4: 437586404
+    Path: event:/SFX_TestingSound

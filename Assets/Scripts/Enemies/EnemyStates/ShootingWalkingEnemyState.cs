@@ -1,12 +1,17 @@
 using System.Collections;
 using DG.Tweening;
+using FMODUnity;
 using UnityEngine;
 
 public class ShootingWalkingEnemyState : EnemyState
 {
-    [SerializeField] private Transform _player; //later will be swapped for player singleton
+    [SerializeField] private EventReference _shootingSound;
+    [SerializeField] private Transform _gunPoint;
+    [SerializeField] private LayerMask _obstacleLayer;
+    [SerializeField] private BubbleProjectileController _bubbleProjectilePrefab;
 
     private Tween _rotTween;
+    private float _shootingCooldown = 0f;
 
     //---------------------------------------------------------------------------------------------------
     #region Implementing abstract methods
@@ -20,6 +25,7 @@ public class ShootingWalkingEnemyState : EnemyState
 
     public override void StateUpdate()
     {
+        ManageShootingCooldown();
         ShootPlayerIfSeen();
         FollowPlayer();
     }
@@ -37,12 +43,31 @@ public class ShootingWalkingEnemyState : EnemyState
 
     private void ShootPlayerIfSeen()
     {
-        //if player seen shoot
+        if (_shootingCooldown > 0) return;
+
+        Vector3 playerPos = PlayerController.activePlayer.transform.position;
+        Vector3 direction = (playerPos - _gunPoint.position).normalized;
+        float distance = Vector3.Distance(_gunPoint.position, playerPos);
+
+        if (Physics.Raycast(_gunPoint.position, direction, out RaycastHit hit, distance, _obstacleLayer))
+        {
+            return;
+        }
+
+        GameObject bubble = Instantiate(_bubbleProjectilePrefab.gameObject, _gunPoint.position, Quaternion.identity);
+        bubble.GetComponent<BubbleProjectileController>().ShootInDirection(_gunPoint.forward, 7.5f);
+
+        _shootingCooldown = 0.5f;
+    }
+
+    private void ManageShootingCooldown()
+    {
+        if (_shootingCooldown > 0) _shootingCooldown -= Time.deltaTime;
     }
 
     private void FollowPlayer()
     {
-        Agent.SetDestination(_player.position);
+        Agent.SetDestination(PlayerController.activePlayer.transform.position);
     }
 
     private IEnumerator WalkingAnimation()

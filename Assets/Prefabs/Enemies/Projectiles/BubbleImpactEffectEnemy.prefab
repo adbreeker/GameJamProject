@@ -9812,7 +9812,7 @@ GameObject:
   - component: {fileID: 4941031802790078469}
   - component: {fileID: 3261521776553703766}
   m_Layer: 1
-  m_Name: BubbleImpactEffect
+  m_Name: BubbleImpactEffectEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10026,7 +10026,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.24313726, g: 0.972549, b: 1, a: 1}
+      maxColor: {r: 0.735849, g: 0.19206119, b: 0.50423086, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}

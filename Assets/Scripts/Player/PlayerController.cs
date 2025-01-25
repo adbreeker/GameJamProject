@@ -31,7 +31,16 @@ public class PlayerController : MonoBehaviour
 
     CharacterController _cc;
 
-    static PlayerController activePlayer;
+    public static PlayerController activePlayer;
+
+    private void Awake()
+    {
+        if (activePlayer != null && activePlayer != this)
+        {
+            Destroy(gameObject);
+        }
+        activePlayer = this;
+    }
 
     void Start()
     {
@@ -41,12 +50,6 @@ public class PlayerController : MonoBehaviour
         _playerVelocity = Vector3.zero;
         _startScale = transform.localScale;
         _viewRotation = _playerCamera.transform.localRotation.eulerAngles;
-
-        if(activePlayer != null && activePlayer != this)
-        {
-            Destroy(gameObject);
-        }
-        activePlayer = this;
     }
 
     void Update()

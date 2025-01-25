@@ -8,9 +8,9 @@ public class BubbleProjectileController : MonoBehaviour
     [SerializeField] LayerMask _collisionLayers;
     [SerializeField, Layer] string _entityTarget;
 
-    public void ShootInDirection(Vector3 direction)
+    public void ShootInDirection(Vector3 direction, float force = 10f)
     {
-        _rigidbody.AddForce(direction * 10f, ForceMode.Impulse);
+        _rigidbody.AddForce(direction * force, ForceMode.Impulse);
         Debug.Log(direction + "  " + _rigidbody.linearVelocity);
     }
 

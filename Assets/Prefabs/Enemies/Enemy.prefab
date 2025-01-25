@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4673667538862193382}
-  m_Layer: 7
-  m_Name: Visuals
+  m_Layer: 8
+  m_Name: RotatingSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,6 +29,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 5820658276224485244}
+  - {fileID: 742470416214437286}
   - {fileID: 1617139205739072447}
   m_Father: {fileID: 5432365896350338618}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -42,7 +44,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1217941176027023091}
   - component: {fileID: 7504098160710572797}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: Afk
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89,7 +91,7 @@ GameObject:
   - component: {fileID: 8028537810708783284}
   - component: {fileID: 1055008307620258991}
   - component: {fileID: 7301119655419549434}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -193,7 +195,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7936138316953108251}
   - component: {fileID: 3394225168553680057}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: Dying
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -231,6 +233,13 @@ MonoBehaviour:
   _faceTowardsPlayer: {fileID: 4487007865115240952}
   _collider: {fileID: 1137321514810576663}
   _dyingSprite: {fileID: 2591327725398187161}
+  _dyingSound:
+    Guid:
+      Data1: 1126516232
+      Data2: 1318345405
+      Data3: -680872546
+      Data4: 437586404
+    Path: event:/SFX_TestingSound
 --- !u!1 &3763102910685829677
 GameObject:
   m_ObjectHideFlags: 0
@@ -241,7 +250,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1063916131488773272}
   - component: {fileID: 950329665972253824}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: ShootingWalking
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -276,7 +285,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _stateMachine: {fileID: 6842236261484164151}
-  _player: {fileID: 0}
+  _shootingSound:
+    Guid:
+      Data1: 1126516232
+      Data2: 1318345405
+      Data3: -680872546
+      Data4: 437586404
+    Path: event:/SFX_TestingSound
+  _gunPoint: {fileID: 742470416214437286}
+  _obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 1024
+  _bubbleProjectilePrefab: {fileID: 5183817983729595931, guid: 5bb5d576c2f513e458cd644b5850092e, type: 3}
 --- !u!1 &3846799791236058615
 GameObject:
   m_ObjectHideFlags: 0
@@ -287,7 +307,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5474680480650662567}
   - component: {fileID: 8460785877617277970}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: Spawning
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -333,7 +353,7 @@ GameObject:
   m_Component:
   - component: {fileID: 747590854531786136}
   - component: {fileID: 1696188639562198477}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: Damaged
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -370,6 +390,44 @@ MonoBehaviour:
   _stateMachine: {fileID: 6842236261484164151}
   _walkingState: {fileID: 950329665972253824}
   _damagedSprite: {fileID: 7302769970056810161}
+  _damagedSound:
+    Guid:
+      Data1: 1126516232
+      Data2: 1318345405
+      Data3: -680872546
+      Data4: 437586404
+    Path: event:/SFX_TestingSound
+--- !u!1 &6086042428600151599
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 742470416214437286}
+  m_Layer: 8
+  m_Name: GunPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &742470416214437286
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6086042428600151599}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.25, y: 0.275, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4673667538862193382}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6253255741890161632
 GameObject:
   m_ObjectHideFlags: 0
@@ -381,7 +439,7 @@ GameObject:
   - component: {fileID: 7107974410958977763}
   - component: {fileID: 4300935525343057260}
   - component: {fileID: 7729370830266532856}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: StunnedOverlay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -451,7 +509,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 142989840061275172}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: States
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -488,7 +546,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5278768237395890112}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: =========
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -521,7 +579,7 @@ GameObject:
   - component: {fileID: 1478382634921746768}
   - component: {fileID: 7408790033025315938}
   - component: {fileID: 2591327725398187161}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: DyingSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -592,7 +650,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1796567065835807939}
   - component: {fileID: 3037719834040748037}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: Stunned
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -641,7 +699,7 @@ GameObject:
   - component: {fileID: 4487007865115240952}
   - component: {fileID: 6842236261484164151}
   - component: {fileID: 4110354534969719402}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -663,7 +721,6 @@ Transform:
   m_Children:
   - {fileID: 142989840061275172}
   - {fileID: 4673667538862193382}
-  - {fileID: 5820658276224485244}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4487007865115240952
@@ -679,7 +736,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _visuals: {fileID: 4673667538862193382}
-  _player: {fileID: 0}
 --- !u!114 &6842236261484164151
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -733,7 +789,7 @@ GameObject:
   - component: {fileID: 1246600959051406446}
   - component: {fileID: 550669409583368027}
   - component: {fileID: 7302769970056810161}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: DamagedSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -805,7 +861,7 @@ GameObject:
   - component: {fileID: 1750581592308598043}
   - component: {fileID: 8615456969710188049}
   - component: {fileID: 7183747971928326472}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: MainSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -875,8 +931,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5820658276224485244}
+  - component: {fileID: 3668387794008542336}
   - component: {fileID: 1137321514810576663}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -891,13 +948,40 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8092939745583378496}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 0.8, y: 1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5432365896350338618}
+  m_Father: {fileID: 4673667538862193382}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3668387794008542336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8092939745583378496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c0a631d793fa944e8782524cd006083, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _OnHitEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6842236261484164151}
+        m_TargetAssemblyTypeName: EnemyStateMachine, Assembly-CSharp
+        m_MethodName: HitEnemy
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!65 &1137321514810576663
 BoxCollider:
   m_ObjectHideFlags: 0

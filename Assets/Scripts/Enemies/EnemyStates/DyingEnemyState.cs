@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using DG.Tweening;
+using FMODUnity;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,11 +9,14 @@ public class DyingEnemyState : EnemyState
     [SerializeField] private EnemyFaceTowardsPlayer _faceTowardsPlayer;
     [SerializeField] private Collider _collider;
     [SerializeField] private RawImage _dyingSprite;
+    [SerializeField] private EventReference _dyingSound;
 
     //---------------------------------------------------------------------------------------------------
     #region Implementing abstract methods
     public override void EnterState()
     {
+        RuntimeManager.PlayOneShotAttached(_dyingSound, _stateMachine.gameObject);
+
         MainSprite.gameObject.SetActive(false);
         _dyingSprite.gameObject.SetActive(true);
 
