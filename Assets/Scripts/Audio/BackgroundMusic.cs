@@ -45,8 +45,6 @@ public class BackgroundMusic : MonoBehaviour
             _musicEvent.getVolume(out volume);
             yield return null;
         }
-
-
     }
 
 }
