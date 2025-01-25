@@ -5,6 +5,7 @@ using FMOD.Studio;
 using FMODUnity;
 using NaughtyAttributes;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class WavesManager : MonoBehaviour
 {
@@ -15,8 +16,10 @@ public class WavesManager : MonoBehaviour
     [ShowNativeProperty] public float WaveTimer { get; private set; }
     [ShowNativeProperty] public int WaveNumber { get; private set; }
 
-    [SerializeField] private List<GameObject> _enemyPrefabs;
     [SerializeField] private EventReference _newWaveSound;
+    [SerializeField] private List<GameObject> _enemyPrefabs;
+    [SerializeField] private float _maxSpawnDistanceFromPlayer = 30f;
+    [SerializeField] private float _minSpawnDistanceFromPlayer = 10f;
     [Space]
     [SerializeField] private float _addedTimePerWave = 10f;
     [SerializeField] private int _addedEnemiesPerWave = 3;
@@ -91,14 +94,40 @@ public class WavesManager : MonoBehaviour
 
     private void SpawnOneThirdEnemies()
     {
-        for(int i = 0; i < _currentEnemySpawnNumber / 3; i++)
+        for (int i = 0; i < _currentEnemySpawnNumber / 3; i++)
         {
-            GameObject spawnedEnemy = Instantiate(_enemyPrefabs[0]);
-            spawnedEnemy.transform.position = new Vector3(-2.9f, -4.7f, 4.7f);
+            int randomChoice = UnityEngine.Random.Range(0, _enemyPrefabs.Count - 1);
+            GameObject spawnedEnemy = Instantiate(_enemyPrefabs[randomChoice]);
 
-            //samplujemy nav mesh
-            //spawnujemy tylko w odpowiedniej odleglosci od gracza
+            float distanceToPlayer = 0f;
+            Vector3 randomPos = Vector3.zero;
+
+            while (distanceToPlayer < _minSpawnDistanceFromPlayer)
+            {
+                randomPos = GetRandomPosition(
+                    PlayerController.activePlayer.gameObject,
+                    _minSpawnDistanceFromPlayer,
+                    _maxSpawnDistanceFromPlayer);
+
+                distanceToPlayer = Vector3.Distance(randomPos, PlayerController.activePlayer.transform.position);
+            }
+
+            NavMesh.SamplePosition(randomPos, out NavMeshHit hit, Mathf.Infinity, NavMesh.AllAreas);
+            Vector3 randomPosOnNavMesh = hit.position;
+
+            spawnedEnemy.transform.position = randomPosOnNavMesh;
         }
+    }
+
+    private Vector3 GetRandomPosition(GameObject origin, float minDistance, float maxDistance)
+    {
+        Vector3 originPos = origin.transform.position;
+        Vector2 randomPoint2D = UnityEngine.Random.insideUnitCircle.normalized;
+
+        float randomDistance = UnityEngine.Random.Range(minDistance, maxDistance);
+
+        randomPoint2D *= randomDistance;
+        return new Vector3(originPos.x + randomPoint2D.x, 0, originPos.z + randomPoint2D.y);
     }
 
     private void CreateInstance()

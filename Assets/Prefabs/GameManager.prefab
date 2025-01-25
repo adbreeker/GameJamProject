@@ -141,11 +141,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 823fab882cbb5db48b6d9a833df0bf78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyPrefabs:
-  - {fileID: 7080000396846712905, guid: 87fcfbde05dc04943b26566b4a5c65ba, type: 3}
-  - {fileID: 4590522685149150556, guid: a11089efe21a3a542901bf96a5d5d1fe, type: 3}
-  - {fileID: 4590522685149150556, guid: e5f8e763a22adaf49a362ddcfc1c9f07, type: 3}
-  - {fileID: 4590522685149150556, guid: a982628e3983b704e88be7c941bf24ff, type: 3}
   _newWaveSound:
     Guid:
       Data1: -1252259324
@@ -153,6 +148,13 @@ MonoBehaviour:
       Data3: -166185332
       Data4: 1284535780
     Path: event:/ui
+  _enemyPrefabs:
+  - {fileID: 7080000396846712905, guid: 87fcfbde05dc04943b26566b4a5c65ba, type: 3}
+  - {fileID: 4590522685149150556, guid: a11089efe21a3a542901bf96a5d5d1fe, type: 3}
+  - {fileID: 4590522685149150556, guid: e5f8e763a22adaf49a362ddcfc1c9f07, type: 3}
+  - {fileID: 4590522685149150556, guid: a982628e3983b704e88be7c941bf24ff, type: 3}
+  _maxRandomPos: {x: 10, y: 0, z: 10}
+  _minRandomPos: {x: -10, y: 0, z: -10}
   _addedTimePerWave: 10
   _addedEnemiesPerWave: 3
   _firstWaveTime: 15
