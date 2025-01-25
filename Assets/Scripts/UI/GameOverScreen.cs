@@ -1,3 +1,6 @@
+using System.Collections;
+using FMOD.Studio;
+using FMODUnity;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -7,6 +10,9 @@ public class GameOverScreen : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _TMP;
     [SerializeField] private Canvas _gameOverCanvas;
     [SerializeField] private WavesDisplay _wavesDisplay;
+    [SerializeField] private EventReference _buttonSound;
+
+    private bool _sceneIsReseting = false;
 
     private void Start()
     {
@@ -29,6 +35,16 @@ public class GameOverScreen : MonoBehaviour
 
     public void ResetScene()
     {
+        if(_sceneIsReseting) return;
+
+        _sceneIsReseting = true;
+        RuntimeManager.PlayOneShot(_buttonSound);
+        StartCoroutine(ResetAfterSound());
+    }
+
+    private IEnumerator ResetAfterSound()
+    {
+        yield return new WaitForSecondsRealtime(0.15f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

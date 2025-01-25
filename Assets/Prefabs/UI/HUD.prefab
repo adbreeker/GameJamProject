@@ -152,6 +152,13 @@ MonoBehaviour:
   _TMP: {fileID: 3970386758563198654}
   _gameOverCanvas: {fileID: 1245337581616684654}
   _wavesDisplay: {fileID: 6432800830781944449}
+  _buttonSound:
+    Guid:
+      Data1: -1252259324
+      Data2: 1194712431
+      Data3: -166185332
+      Data4: 1284535780
+    Path: event:/ui
 --- !u!1 &2223715283698657146
 GameObject:
   m_ObjectHideFlags: 0
