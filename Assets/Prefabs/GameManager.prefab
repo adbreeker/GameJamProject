@@ -64,6 +64,13 @@ MonoBehaviour:
       Data3: 1018441662
       Data4: 638302142
     Path: event:/muzyka
+  _failSound:
+    Guid:
+      Data1: 250593043
+      Data2: 1319719606
+      Data3: 596527277
+      Data4: -1533976686
+    Path: event:/fail
 --- !u!1 &5021898412024980590
 GameObject:
   m_ObjectHideFlags: 0
