@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{7eeaa3c8-384e-4312-bdb0-77e3439efbc1}">
 		<property name="assetPath">
-			<value>perka2.wav</value>
+			<value>MUZYKA/perka2.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>44.0999985</value>

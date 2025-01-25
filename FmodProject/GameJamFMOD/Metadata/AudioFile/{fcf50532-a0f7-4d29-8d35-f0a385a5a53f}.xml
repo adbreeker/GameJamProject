@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{fcf50532-a0f7-4d29-8d35-f0a385a5a53f}">
 		<property name="assetPath">
-			<value>melodia 2 (high wave).wav</value>
+			<value>MUZYKA/melodia 2 (high wave).wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>44.0999985</value>

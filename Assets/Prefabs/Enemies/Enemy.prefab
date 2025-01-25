@@ -235,11 +235,11 @@ MonoBehaviour:
   _dyingSprite: {fileID: 2591327725398187161}
   _dyingSound:
     Guid:
-      Data1: 1126516232
-      Data2: 1318345405
-      Data3: -680872546
-      Data4: 437586404
-    Path: event:/SFX_TestingSound
+      Data1: -1497538868
+      Data2: 1141948545
+      Data3: 369162120
+      Data4: 797510166
+    Path: event:/enemy damage
 --- !u!1 &3763102910685829677
 GameObject:
   m_ObjectHideFlags: 0
@@ -287,11 +287,11 @@ MonoBehaviour:
   _stateMachine: {fileID: 6842236261484164151}
   _shootingSound:
     Guid:
-      Data1: 1126516232
-      Data2: 1318345405
-      Data3: -680872546
-      Data4: 437586404
-    Path: event:/SFX_TestingSound
+      Data1: -797357644
+      Data2: 1080239424
+      Data3: -12111218
+      Data4: 592354791
+    Path: event:/enemy shot
   _gunPoint: {fileID: 742470416214437286}
   _obstacleLayer:
     serializedVersion: 2
@@ -343,6 +343,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _stateMachine: {fileID: 6842236261484164151}
   _walkingState: {fileID: 950329665972253824}
+  _spawningSound:
+    Guid:
+      Data1: -1749949786
+      Data2: 1135231536
+      Data3: 731082901
+      Data4: -935300254
+    Path: event:/enemy spawn
 --- !u!1 &5923583509355257299
 GameObject:
   m_ObjectHideFlags: 0
@@ -392,11 +399,11 @@ MonoBehaviour:
   _damagedSprite: {fileID: 7302769970056810161}
   _damagedSound:
     Guid:
-      Data1: 1126516232
-      Data2: 1318345405
-      Data3: -680872546
-      Data4: 437586404
-    Path: event:/SFX_TestingSound
+      Data1: -1497538868
+      Data2: 1141948545
+      Data3: 369162120
+      Data4: 797510166
+    Path: event:/enemy damage
 --- !u!1 &6086042428600151599
 GameObject:
   m_ObjectHideFlags: 0
@@ -716,7 +723,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 142989840061275172}
@@ -968,7 +975,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbebcd00b1ef87240989889ac2669ebf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerLayer: Player
 --- !u!114 &3668387794008542336
 MonoBehaviour:
   m_ObjectHideFlags: 0

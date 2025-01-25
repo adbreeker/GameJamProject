@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{743de6d3-efa7-4687-b849-0af70e03406a}">
 		<property name="assetPath">
-			<value>brake main ducked.wav</value>
+			<value>MUZYKA/brake main ducked.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>44.0999985</value>

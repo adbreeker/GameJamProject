@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="EncodableAsset" id="{321771d6-bbd8-4c5d-a47d-0a102892543e}">
+		<property name="assetPath">
+			<value>SPAWN/</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{a288f9f7-122a-42b5-8813-1d9be7b104a4}</destination>
+		</relationship>
+	</object>
+</objects>
