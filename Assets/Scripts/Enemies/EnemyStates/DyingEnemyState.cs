@@ -15,7 +15,7 @@ public class DyingEnemyState : EnemyState
     #region Implementing abstract methods
     public override void EnterState()
     {
-        RuntimeManager.PlayOneShotAttached(_dyingSound, _stateMachine.gameObject);
+        AudioManager.Instance.PlayOneShotSpatialized(_dyingSound, _stateMachine.transform);
 
         MainSprite.gameObject.SetActive(false);
         _dyingSprite.gameObject.SetActive(true);
