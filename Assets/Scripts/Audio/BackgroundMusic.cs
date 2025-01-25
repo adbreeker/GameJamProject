@@ -15,6 +15,7 @@ public class BackgroundMusic : MonoBehaviour
     private void Start()
     {
         WavesManager.Instance.OnNewWave += UpdateMusic;
+        
         PlayerController.activePlayer.OnPlayerDeath += () => StartCoroutine(FadeMusicAndPlayFailSound());
 
         _musicEvent.setParameterByName("death", 0);

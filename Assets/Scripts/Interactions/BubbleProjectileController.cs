@@ -25,7 +25,7 @@ public class BubbleProjectileController : MonoBehaviour
 
             if (other.gameObject.layer == LayerMask.NameToLayer(_entityTarget))
             {
-                other.gameObject.GetComponent<EntityBehavior>().OnHit();
+                other.gameObject.GetComponent<EntityBehavior>().HitEntity();
             }
 
             Destroy(gameObject);

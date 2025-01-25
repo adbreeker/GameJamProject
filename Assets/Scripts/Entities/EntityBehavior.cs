@@ -3,10 +3,10 @@ using UnityEngine.Events;
 
 public class EntityBehavior : MonoBehaviour
 {
-    [SerializeField] UnityEvent _OnHitEvent;
+    [SerializeField] UnityEvent _OnHit;
 
-    public void OnHit()
+    public virtual void HitEntity()
     {
-        _OnHitEvent?.Invoke();
+        _OnHit?.Invoke();
     }
 }
