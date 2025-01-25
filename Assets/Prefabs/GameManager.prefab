@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4121821294319160813}
   - component: {fileID: 8749739220142508799}
+  - component: {fileID: 2515240005782840528}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -44,6 +45,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67de873b8cc096942864fb085444446a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2515240005782840528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1892378870688872508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f5f1e483c3557c44baa255fc5fc96ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _adaptiveMusic:
+    Guid:
+      Data1: 1769916661
+      Data2: 1110222911
+      Data3: 1018441662
+      Data4: 638302142
+    Path: event:/muzyka
 --- !u!1 &5021898412024980590
 GameObject:
   m_ObjectHideFlags: 0
@@ -129,10 +149,8 @@ MonoBehaviour:
       Data3: -166185332
       Data4: 1284535780
     Path: event:/ui
-  _adaptiveMusic:
-    Guid:
-      Data1: 1769916661
-      Data2: 1110222911
-      Data3: 1018441662
-      Data4: 638302142
-    Path: event:/muzyka
+  _addedTimePerWave: 10
+  _addedEnemiesPerWave: 3
+  _firstWaveTime: 15
+  _firstWaveEnemies: 3
+  _timeBeforFirstWave: 5

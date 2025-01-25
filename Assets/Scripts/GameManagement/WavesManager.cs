@@ -1,20 +1,21 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using FMOD.Studio;
 using FMODUnity;
 using NaughtyAttributes;
 using UnityEngine;
-using static UnityEngine.Rendering.DebugUI;
 
 public class WavesManager : MonoBehaviour
 {
     public static WavesManager Instance { get; private set; }
+
+    public event Action OnNewWave;
 
     [ShowNativeProperty] public float WaveTimer { get; private set; }
     [ShowNativeProperty] public int WaveNumber { get; private set; }
 
     [SerializeField] private GameObject _enemyPrefab;
     [SerializeField] private EventReference _newWaveSound;
-    [SerializeField] private EventReference _adaptiveMusic;
     [Space]
     [SerializeField] private float _addedTimePerWave = 10f;
     [SerializeField] private int _addedEnemiesPerWave = 3;
@@ -22,7 +23,6 @@ public class WavesManager : MonoBehaviour
     [SerializeField] private int _firstWaveEnemies = 3;
     [SerializeField] private float _timeBeforFirstWave = 5f;
 
-    private EventInstance _musicEvent;
     private float _currentStartingTimerValue;
     private int _currentEnemySpawnNumber;
 
@@ -32,22 +32,8 @@ public class WavesManager : MonoBehaviour
         StartCoroutine(StartWaves());
     }
 
-    private void OnDestroy()
-    {
-        _musicEvent.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-        _musicEvent.release();
-    }
-
-    public void SwapToDeathMusic()
-    {
-        _musicEvent.setParameterByName("death", 2);
-    }
-
     private IEnumerator StartWaves()
     {
-        _musicEvent = RuntimeManager.CreateInstance(_adaptiveMusic);
-        _musicEvent.start();
-
         WaveNumber = 0;
         WaveTimer = _timeBeforFirstWave;
 
@@ -65,11 +51,12 @@ public class WavesManager : MonoBehaviour
 
     private IEnumerator Waves()
     {
+        OnNewWave?.Invoke();
+
         RuntimeManager.PlayOneShot(_newWaveSound);
         SpawnEnemies();
 
         WaveTimer = _currentStartingTimerValue;
-        if (WaveNumber < 5) _musicEvent.setParameterByName("waves", WaveNumber);
 
         while (WaveTimer > 0)
         {
