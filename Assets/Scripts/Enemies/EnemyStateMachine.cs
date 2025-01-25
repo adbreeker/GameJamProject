@@ -1,34 +1,34 @@
 using NaughtyAttributes;
 using UnityEngine;
+using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class EnemyStateMachine : MonoBehaviour
 {
-    //facing player
-    //shooting
-    //state machine
-
-
-    //spawning state
-    //afk state
-    //stunned state
-    //shooting state
-    //coming state
-
     [ShowNativeProperty] public EnemyState CurrentState { get; private set; }
 
+    [field: SerializeField] public NavMeshAgent Agent { get; private set; }
+    [field: SerializeField] public float EnemySpeed { get; private set; }
+    [field: SerializeField] public RawImage MainSprite { get; private set; }
+    [field: SerializeField] public Canvas SpritesCanvas { get; private set; }
+    [Space]
     [SerializeField] private EnemyState _startingState;
+    [Space]
+    [SerializeField] private DamagedEnemyState _damagedState;
+    [SerializeField] private DyingEnemyState _dyingState;
+    [SerializeField] private StunnedEnemyState _stunnedState;
 
     private bool _changingStateDisabled = false;
     private int _enemyHP = 3;
 
+    private void Awake()
+    {
+        InitializeState();
+    }
+
     private void Update()
     {
         CurrentState.StateUpdate();
-    }
-
-    public void DisableChangingStates()
-    {
-        _changingStateDisabled = true;
     }
 
     public void ChangeState(EnemyState givenState)
@@ -52,6 +52,26 @@ public class EnemyStateMachine : MonoBehaviour
 
         CurrentState.gameObject.SetActive(true);
         CurrentState.EnterState();
+    }
+
+    public void DisableChangingStates()
+    {
+        _changingStateDisabled = true;
+    }
+
+    public void HitEnemy()
+    {
+        if (_enemyHP > 0)
+        {
+            _enemyHP--;
+
+            if (_enemyHP > 0) ChangeState(_damagedState);
+            else ChangeState(_dyingState);
+        }
+    }
+    public void StunEnemy()
+    {
+        if (CurrentState != _stunnedState) ChangeState(_stunnedState);
     }
 
     private void InitializeState()
