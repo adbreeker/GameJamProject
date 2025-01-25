@@ -154,3 +154,4 @@ MonoBehaviour:
   _collisionLayers:
     serializedVersion: 2
     m_Bits: 1024
+  _entityTarget: Enemy

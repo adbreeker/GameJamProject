@@ -1,4 +1,6 @@
+using NaughtyAttributes;
 using UnityEngine;
+using UnityEngine.InputSystem.XR;
 
 public class PlayerController : MonoBehaviour
 {
@@ -29,13 +31,22 @@ public class PlayerController : MonoBehaviour
 
     CharacterController _cc;
 
+    static PlayerController activePlayer;
+
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+
         _cc = GetComponent<CharacterController>();
         _playerVelocity = Vector3.zero;
         _startScale = transform.localScale;
         _viewRotation = _playerCamera.transform.localRotation.eulerAngles;
+
+        if(activePlayer != null && activePlayer != this)
+        {
+            Destroy(gameObject);
+        }
+        activePlayer = this;
     }
 
     void Update()
@@ -95,12 +106,28 @@ public class PlayerController : MonoBehaviour
                 new Vector3(_startScale.x, _startScale.y * crouchHeightMultiplier, _startScale.z), 
                 crouchingSpeed * Time.deltaTime);
         }
-        else
+        else if(transform.localScale != _startScale)
         {
-            transform.localScale = Vector3.MoveTowards(
-                transform.localScale,
-                new Vector3(_startScale.x, _startScale.y, _startScale.z),
-                uncrouchingSpeed * Time.deltaTime);
+            Vector3 playerTop = transform.TransformPoint(_cc.center) + transform.up * (_cc.height * transform.lossyScale.y / 2f);
+            RaycastHit hit;
+
+            if (Physics.Raycast(playerTop,transform.up,out hit,0.5f,LayerMask.GetMask("Obstacle")))
+            {
+                float possibleStep = Vector3.Distance(playerTop, hit.point);
+                Debug.Log("roof, posible step is: " + possibleStep);
+                if(possibleStep < 0.1f) { possibleStep = 0f; }
+                transform.localScale = Vector3.MoveTowards(
+                    transform.localScale,
+                    new Vector3(_startScale.x, _startScale.y, _startScale.z),
+                    Mathf.Min(uncrouchingSpeed * Time.deltaTime, possibleStep));
+            }
+            else
+            {
+                transform.localScale = Vector3.MoveTowards(
+                    transform.localScale,
+                    new Vector3(_startScale.x, _startScale.y, _startScale.z),
+                    uncrouchingSpeed * Time.deltaTime);
+            }
         }
     }
 

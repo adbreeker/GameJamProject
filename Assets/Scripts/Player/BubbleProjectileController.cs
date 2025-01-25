@@ -1,3 +1,4 @@
+using NaughtyAttributes;
 using UnityEngine;
 
 public class BubbleProjectileController : MonoBehaviour
@@ -5,6 +6,7 @@ public class BubbleProjectileController : MonoBehaviour
     [SerializeField] Rigidbody _rigidbody;
     [SerializeField] GameObject _impactPrefab;
     [SerializeField] LayerMask _collisionLayers;
+    [SerializeField, Layer] string _entityTarget;
 
     public void ShootInDirection(Vector3 direction)
     {
@@ -20,6 +22,12 @@ public class BubbleProjectileController : MonoBehaviour
             Instantiate(_impactPrefab,
                 (transform.position - _rigidbody.linearVelocity.normalized*0.3f),
                 Quaternion.identity);
+
+            if (other.gameObject.layer == LayerMask.NameToLayer(_entityTarget))
+            {
+                other.gameObject.GetComponent<EntityBehavior>().OnHit();
+            }
+
             Destroy(gameObject);
         }
     }
