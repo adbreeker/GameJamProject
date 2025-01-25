@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 23472830979472412}
   - component: {fileID: 3753105142884264119}
   m_Layer: 10
-  m_Name: a laptop
+  m_Name: laptop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
