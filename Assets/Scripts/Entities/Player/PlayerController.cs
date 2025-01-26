@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using FMODUnity;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -33,12 +32,14 @@ public class PlayerController : MonoBehaviour
     bool _isAbleToShoot = true;
 
     [Header("Interactions:")]
-    [SerializeField] float interactionRange;
-    [SerializeField] float interactionRadius;
+    [SerializeField] float _interactionRange;
+    [SerializeField] float _interactionRadius;
+    [SerializeField] GameObject _gumGrenadePrefab;
+    [SerializeField] GameObject _gumShieldPrefab;
 
     [Header("Sounds:")]
-    [SerializeField] EventReference drinkSound;
-    [SerializeField] EventReference shootSound;
+    [SerializeField] EventReference _drinkSound;
+    [SerializeField] EventReference _shootSound;
 
     GameObject _pointedInteraction;
     public Action<ItemType> OnPlayerPickUpItem;
@@ -79,7 +80,7 @@ public class PlayerController : MonoBehaviour
 
         //actions
         Shooting();
-        CheckInteractions(interactionRange, interactionRadius);
+        CheckInteractions(_interactionRange, _interactionRadius);
         Interaction();
         UseItem();
     }
@@ -181,7 +182,7 @@ public class PlayerController : MonoBehaviour
             _isAbleToShoot = false;
             StartCoroutine(ShootingCooldown());
 
-            RuntimeManager.PlayOneShot(shootSound);
+            RuntimeManager.PlayOneShot(_shootSound);
             GameObject bubble = Instantiate(_projectilePrefab, _shootingOrigin.transform.position, Quaternion.identity);
             bubble.GetComponent<BubbleProjectileController>().ShootInDirection(_playerCamera.transform.forward);
         }
@@ -230,7 +231,7 @@ public class PlayerController : MonoBehaviour
                     case ItemType.BUBBLE_TEA:
                         OnPlayerPickUpItem?.Invoke(itemPickedUp);
                         OnPlayerUseItem?.Invoke(itemPickedUp);
-                        RuntimeManager.PlayOneShot(drinkSound);
+                        RuntimeManager.PlayOneShot(_drinkSound);
                         PlayerBehavior.activePlayer.HealPlayer(3);
                         return;
                     case ItemType.GUM_GRENADE:
@@ -253,10 +254,10 @@ public class PlayerController : MonoBehaviour
             switch(_currentItem)
             {
                 case ItemType.GUM_GRENADE:
-                    Debug.Log("GRENADE!");
+                    StartCoroutine(ThrowGumGrenadeDeleyed(0.5f));
                     break;
                 case ItemType.GUM_SHIELD:
-                    Debug.Log("SHIELD!");
+                    Instantiate(_gumShieldPrefab, _playerCamera.transform);
                     break;
             }
 
@@ -265,7 +266,13 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-
+    IEnumerator ThrowGumGrenadeDeleyed(float deley)
+    {
+        yield return new WaitForSeconds(deley);
+        Vector3 mouthPos = (_playerCamera.transform.position - new Vector3(0f, 0.2f, 0f)) + _playerCamera.transform.forward;
+        Instantiate(_gumGrenadePrefab,mouthPos, Quaternion.identity)
+                        .GetComponent<GumGrenadeController>().ThrowInDirection(_playerCamera.transform.forward, 10f, 3f);
+    }
 
 
 
