@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using FMODUnity;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -34,6 +35,11 @@ public class PlayerController : MonoBehaviour
     [Header("Interactions:")]
     [SerializeField] float interactionRange;
     [SerializeField] float interactionRadius;
+
+    [Header("Sounds:")]
+    [SerializeField] EventReference drinkSound;
+    [SerializeField] EventReference shootSound;
+
     GameObject _pointedInteraction;
     public Action<ItemType> OnPlayerPickUpItem;
     public Action<ItemType> OnPlayerUseItem;
@@ -174,6 +180,8 @@ public class PlayerController : MonoBehaviour
         {
             _isAbleToShoot = false;
             StartCoroutine(ShootingCooldown());
+
+            RuntimeManager.PlayOneShot(shootSound);
             GameObject bubble = Instantiate(_projectilePrefab, _shootingOrigin.transform.position, Quaternion.identity);
             bubble.GetComponent<BubbleProjectileController>().ShootInDirection(_playerCamera.transform.forward);
         }
@@ -222,6 +230,7 @@ public class PlayerController : MonoBehaviour
                     case ItemType.BUBBLE_TEA:
                         OnPlayerPickUpItem?.Invoke(itemPickedUp);
                         OnPlayerUseItem?.Invoke(itemPickedUp);
+                        RuntimeManager.PlayOneShot(drinkSound);
                         PlayerBehavior.activePlayer.HealPlayer(3);
                         return;
                     case ItemType.GUM_GRENADE:

@@ -1,4 +1,5 @@
 using System;
+using FMODUnity;
 using UnityEngine;
 
 public class PlayerBehavior : EntityBehavior
@@ -10,6 +11,7 @@ public class PlayerBehavior : EntityBehavior
 
     [Header("Special effects:")]
     [SerializeField] GameObject _healingPrefab;
+    [SerializeField] EventReference _damagedSound;
 
     //listeners
     public Action OnPlayerDeath;
@@ -42,6 +44,10 @@ public class PlayerBehavior : EntityBehavior
             currentHealth = 0;
             isPlayerDead = true;
             OnPlayerDeath?.Invoke();
+        }
+        else
+        {
+            RuntimeManager.PlayOneShot(_damagedSound);
         }
         OnPlayerHited?.Invoke();
     }

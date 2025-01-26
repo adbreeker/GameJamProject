@@ -178,6 +178,13 @@ MonoBehaviour:
   <currentHealth>k__BackingField: 10
   <isPlayerDead>k__BackingField: 0
   _healingPrefab: {fileID: 9017484664307500583, guid: ea854416577ce9e4a872172064d8f4b6, type: 3}
+  _damagedSound:
+    Guid:
+      Data1: 1126516232
+      Data2: 1318345405
+      Data3: -680872546
+      Data4: 437586404
+    Path: event:/SFX_TestingSound
 --- !u!114 &3044635048772275547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -204,6 +211,20 @@ MonoBehaviour:
   _shootingCooldown: 0.3
   interactionRange: 1.5
   interactionRadius: 0.2
+  drinkSound:
+    Guid:
+      Data1: 1126516232
+      Data2: 1318345405
+      Data3: -680872546
+      Data4: 437586404
+    Path: event:/SFX_TestingSound
+  shootSound:
+    Guid:
+      Data1: -178696727
+      Data2: 1272969548
+      Data3: -731321691
+      Data4: 1002894944
+    Path: event:/player shot
 --- !u!1 &6675697866105231865
 GameObject:
   m_ObjectHideFlags: 0
