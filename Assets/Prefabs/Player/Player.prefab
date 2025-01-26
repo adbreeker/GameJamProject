@@ -205,7 +205,7 @@ MonoBehaviour:
   crouchingSpeed: 2
   uncrouchingSpeed: 3
   _playerCamera: {fileID: 8700194355445646484}
-  viewSensitivity: 200
+  viewSensitivity: 150
   _shootingOrigin: {fileID: 499838515061896793}
   _projectilePrefab: {fileID: 7457173310827220616, guid: c22cd5d274772674cb3a49c91c5b577a, type: 3}
   _shootingCooldown: 0.3

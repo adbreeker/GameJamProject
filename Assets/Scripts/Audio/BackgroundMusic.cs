@@ -19,7 +19,7 @@ public class BackgroundMusic : MonoBehaviour
         PlayerBehavior.activePlayer.OnPlayerDeath += () => StartCoroutine(FadeMusicAndPlayFailSound());
 
         _musicEvent = RuntimeManager.CreateInstance(_adaptiveMusic);
-        _musicEvent.setParameterByName("waves", 0);
+        _musicEvent.setParameterByName("waves", 1);
         _musicEvent.start();
     }
 
