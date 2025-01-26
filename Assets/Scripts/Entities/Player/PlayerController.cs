@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -27,6 +28,8 @@ public class PlayerController : MonoBehaviour
     [Header("Shooting:")]
     [SerializeField] Transform _shootingOrigin;
     [SerializeField] GameObject _projectilePrefab;
+    [SerializeField] float _shootingCooldown;
+    bool _isAbleToShoot = true;
 
     [Header("Interactions:")]
     [SerializeField] float interactionRange;
@@ -167,11 +170,19 @@ public class PlayerController : MonoBehaviour
 
     void Shooting()
     {
-        if(Input.GetKeyDown(KeyCode.Mouse0))
+        if(Input.GetKeyDown(KeyCode.Mouse0) && _isAbleToShoot)
         {
+            _isAbleToShoot = false;
+            StartCoroutine(ShootingCooldown());
             GameObject bubble = Instantiate(_projectilePrefab, _shootingOrigin.transform.position, Quaternion.identity);
             bubble.GetComponent<BubbleProjectileController>().ShootInDirection(_playerCamera.transform.forward);
         }
+    }
+
+    IEnumerator ShootingCooldown()
+    {
+        yield return new WaitForSeconds(_shootingCooldown);
+        _isAbleToShoot = true;
     }
 
     void CheckInteractions(float distance, float radius)
@@ -211,7 +222,7 @@ public class PlayerController : MonoBehaviour
                     case ItemType.BUBBLE_TEA:
                         OnPlayerPickUpItem?.Invoke(itemPickedUp);
                         OnPlayerUseItem?.Invoke(itemPickedUp);
-                        PlayerBehavior.activePlayer.HealPlayer(4);
+                        PlayerBehavior.activePlayer.HealPlayer(3);
                         return;
                     case ItemType.GUM_GRENADE:
                         OnPlayerPickUpItem?.Invoke(itemPickedUp);
