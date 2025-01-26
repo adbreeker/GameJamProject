@@ -180,11 +180,11 @@ MonoBehaviour:
   _healingPrefab: {fileID: 9017484664307500583, guid: ea854416577ce9e4a872172064d8f4b6, type: 3}
   _damagedSound:
     Guid:
-      Data1: 1126516232
-      Data2: 1318345405
-      Data3: -680872546
-      Data4: 437586404
-    Path: event:/SFX_TestingSound
+      Data1: -1470819203
+      Data2: 1337657929
+      Data3: 1684651677
+      Data4: 1900504214
+    Path: event:/player damage
 --- !u!114 &3044635048772275547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -213,11 +213,11 @@ MonoBehaviour:
   interactionRadius: 0.2
   drinkSound:
     Guid:
-      Data1: 1126516232
-      Data2: 1318345405
-      Data3: -680872546
-      Data4: 437586404
-    Path: event:/SFX_TestingSound
+      Data1: -1842419143
+      Data2: 1097737574
+      Data3: 1848313497
+      Data4: -948837226
+    Path: event:/bubble tea
   shootSound:
     Guid:
       Data1: -178696727
