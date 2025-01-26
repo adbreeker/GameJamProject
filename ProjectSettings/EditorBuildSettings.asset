@@ -11,9 +11,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MapNight.unity
     guid: 911a2977db3671b409284ec03dbea44e
-  - enabled: 0
-    path: Assets/Scenes/Map.unity
-    guid: f4e8083ad034e5749a5c98f53f05dbe8
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
