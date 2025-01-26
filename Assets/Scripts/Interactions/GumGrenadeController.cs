@@ -18,7 +18,7 @@ public class GumGrenadeController : MonoBehaviour
     {
         if((_collideMask.value & (1 << collision.gameObject.layer)) != 0)
         {
-            Instantiate(_impactPrefab, transform.position, Quaternion.identity);
+            Instantiate(_impactPrefab, transform.position, Quaternion.identity).transform.localScale = Vector3.one * _explosionRadius;
             Collider[] enemies = Physics.OverlapSphere(transform.position, _explosionRadius, LayerMask.GetMask("Enemy"));
             foreach (Collider collider in enemies)
             {
