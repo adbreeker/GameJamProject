@@ -25,8 +25,8 @@ public class WavesManager : MonoBehaviour
     [SerializeField] private int _addedEnemiesPerWave = 3;
     [SerializeField] private float _firstWaveTime = 15f;
     [SerializeField] private int _firstWaveEnemies = 3;
-    [SerializeField] private float _timeBeforFirstWave = 5f;
 
+    private float _timeBeforFirstWave = 5f;
     private float _currentStartingTimerValue;
     private int _currentEnemySpawnNumber;
 

@@ -56,7 +56,8 @@ public class ShootingWalkingEnemyState : EnemyState
 
         AudioManager.Instance.PlayOneShotSpatialized(_shootingSound, _stateMachine.transform);
         GameObject bubble = Instantiate(_bubbleProjectilePrefab.gameObject, _gunPoint.position, Quaternion.identity);
-        bubble.GetComponent<BubbleProjectileController>().ShootInDirection(_gunPoint.forward, 5f);
+        
+        bubble.GetComponent<BubbleProjectileController>().ShootInDirection(direction, 5f);
 
         _shootingCooldown = 1f;
     }

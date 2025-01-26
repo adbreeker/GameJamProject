@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 4800466640044052303}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 0.4, z: 0}
+  m_LocalPosition: {x: 0.5, y: 0.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -198,7 +198,7 @@ MonoBehaviour:
   crouchingSpeed: 2
   uncrouchingSpeed: 3
   _playerCamera: {fileID: 8700194355445646484}
-  viewSensitivity: 120
+  viewSensitivity: 200
   _shootingOrigin: {fileID: 499838515061896793}
   _projectilePrefab: {fileID: 7457173310827220616, guid: c22cd5d274772674cb3a49c91c5b577a, type: 3}
   interactionRange: 1.5

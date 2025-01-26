@@ -18,7 +18,6 @@ public class BackgroundMusic : MonoBehaviour
         
         PlayerBehavior.activePlayer.OnPlayerDeath += () => StartCoroutine(FadeMusicAndPlayFailSound());
 
-        _musicEvent.setParameterByName("death", 0);
         _musicEvent.setParameterByName("waves", 0);
         _musicEvent = RuntimeManager.CreateInstance(_adaptiveMusic);
         _musicEvent.start();
@@ -38,11 +37,12 @@ public class BackgroundMusic : MonoBehaviour
     private IEnumerator FadeMusicAndPlayFailSound()
     {
         RuntimeManager.PlayOneShot(_failSound);
+        float timeToFadeOutMusic = 0.5f;
 
         _musicEvent.getVolume(out float volume);
         while (volume > 0)
         {
-            AudioManager.Instance.SetInstanceVolume(_musicEvent, volume - Time.deltaTime / 2f);
+            AudioManager.Instance.SetInstanceVolume(_musicEvent, volume - (Time.unscaledDeltaTime / timeToFadeOutMusic));
             _musicEvent.getVolume(out volume);
             yield return null;
         }
