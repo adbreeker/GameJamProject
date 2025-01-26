@@ -1,7 +1,6 @@
 using System;
-using UnityEditor.Analytics;
+using System.Collections;
 using UnityEngine;
-using UnityEngine.Events;
 
 public enum ItemType
 {
@@ -50,6 +49,7 @@ public class ItemSpawner : MonoBehaviour
         switch(currentItem)
         {
             case ItemType.NONE:
+                StartCoroutine(SpawnItemAfterDeley(UnityEngine.Random.Range(20f, 45f)));
                 break;
             case ItemType.BUBBLE_TEA:
                 _bubbleTeaIcon.SetActive(true);
@@ -66,6 +66,12 @@ public class ItemSpawner : MonoBehaviour
         }
     }
 
+    IEnumerator SpawnItemAfterDeley(float deley)
+    {
+        yield return new WaitForSeconds(deley);
+        SpawnRandomItem();
+    }
+
     public ItemType GetItem()
     {
         if(currentItem == ItemType.NONE) { return ItemType.NONE; }
@@ -76,6 +82,7 @@ public class ItemSpawner : MonoBehaviour
             _currentIcon.SetActive(false);
             _currentIcon = null;
             currentItem = ItemType.NONE;
+            StartCoroutine(SpawnItemAfterDeley(UnityEngine.Random.Range(60f, 90f)));
 
             return itemToReturn;
         }
