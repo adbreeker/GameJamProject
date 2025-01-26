@@ -22,7 +22,7 @@ public class GumGrenadeController : MonoBehaviour
             Collider[] enemies = Physics.OverlapSphere(transform.position, _explosionRadius, LayerMask.GetMask("Enemy"));
             foreach (Collider collider in enemies)
             {
-                collider.transform.parent.GetComponent<EnemyStateMachine>()?.StunEnemy();
+                collider.transform.parent.parent.GetComponent<EnemyStateMachine>()?.StunEnemy();
             }
             Destroy(gameObject);
         }
