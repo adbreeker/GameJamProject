@@ -734,7 +734,7 @@ GameObject:
   - component: {fileID: 288078490302532978}
   - component: {fileID: 3031714437194774881}
   m_Layer: 5
-  m_Name: SkillIcon1
+  m_Name: GumGrenadeIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -787,7 +787,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: c783b763d12874147876e070661b66ab, type: 3}
+  m_Texture: {fileID: 2800000, guid: 5279fbbc1e87f4ed98a960122d9a76fd, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -806,7 +806,7 @@ GameObject:
   - component: {fileID: 6895871199561068135}
   - component: {fileID: 1025011131202138364}
   m_Layer: 5
-  m_Name: SkillIcon2
+  m_Name: GumShieldIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -852,14 +852,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.4009434, b: 0.9384533, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: a7e06068a7215854a84bf5ed8280ed15, type: 3}
+  m_Texture: {fileID: 2800000, guid: 5279fbbc1e87f4ed98a960122d9a76fd, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -1107,8 +1107,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9aa13ba70df7064b8cce49d6b59cb6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _skillIcon1: {fileID: 0}
-  _skillIcon2: {fileID: 0}
+  _gumGrenadeIcon: {fileID: 4246318510120207549}
+  _gumShieldIcon: {fileID: 5012534022168070746}
 --- !u!223 &5164748954695924786
 Canvas:
   m_ObjectHideFlags: 0

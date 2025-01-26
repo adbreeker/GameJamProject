@@ -25126,17 +25126,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3044635048772275547, guid: 1a01f5252d684484798452c4fa074330, type: 3}
-      propertyPath: viewSensitivity
-      value: 100
-      objectReference: {fileID: 0}
     - target: {fileID: 6397571682609507130, guid: 1a01f5252d684484798452c4fa074330, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 8883865499674074090, guid: 1a01f5252d684484798452c4fa074330, type: 3}
-      propertyPath: m_CastShadows
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -7,14 +7,17 @@ public class WavesDisplay : MonoBehaviour
 
     private void Update()
     {
-        if (WavesManager.Instance.WaveNumber > 0)
+        if (WavesManager.Instance != null)
         {
-            _TMP.text = "Wave " + WavesManager.Instance.WaveNumber + "\n" +
-                        Mathf.RoundToInt(WavesManager.Instance.WaveTimer);
-        }
-        else
-        {
-            _TMP.text = Mathf.RoundToInt(WavesManager.Instance.WaveTimer).ToString();
+            if (WavesManager.Instance.WaveNumber > 0)
+            {
+                _TMP.text = "Wave " + WavesManager.Instance.WaveNumber + "\n" +
+                            Mathf.RoundToInt(WavesManager.Instance.WaveTimer);
+            }
+            else
+            {
+                _TMP.text = Mathf.RoundToInt(WavesManager.Instance.WaveTimer).ToString();
+            }
         }
     }
 }

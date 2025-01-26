@@ -66,18 +66,18 @@ public class ItemSpawner : MonoBehaviour
         }
     }
 
-    public void GetItem()
+    public ItemType GetItem()
     {
-        if(currentItem == ItemType.NONE) { return; }
+        if(currentItem == ItemType.NONE) { return ItemType.NONE; }
         else
         {
-            if (currentItem == ItemType.BUBBLE_TEA) { PlayerBehavior.activePlayer.HealPlayer(4); }
-            if (currentItem == ItemType.GUM_GRENADE) { }
-            if (currentItem == ItemType.GUM_SHIELD) { }
+            ItemType itemToReturn = currentItem;
 
             _currentIcon.SetActive(false);
             _currentIcon = null;
             currentItem = ItemType.NONE;
+
+            return itemToReturn;
         }
     }
 
@@ -86,7 +86,7 @@ public class ItemSpawner : MonoBehaviour
         Vector3 lookVector = PlayerController.activePlayer.transform.position - iconToRotate.position;
         lookVector.y = 0;
 
-        Quaternion rotation = Quaternion.LookRotation(lookVector);
+        Quaternion rotation = Quaternion.LookRotation(lookVector) * Quaternion.Euler(0f, 180f, 0f);
         iconToRotate.rotation = rotation;
     }
 }

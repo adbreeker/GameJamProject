@@ -5,8 +5,15 @@ public class HPBar : MonoBehaviour
 {
     [SerializeField] private Image _hpImage;
 
-    private void Update()
+    private void Start()
     {
-        _hpImage.fillAmount = 0.75f;
+        _hpImage.fillAmount = 1;
+        PlayerBehavior.activePlayer.OnPlayerHited += UpdateHealthBar;
+        PlayerBehavior.activePlayer.OnPlayerHealed += UpdateHealthBar;
+    }
+
+    void UpdateHealthBar()
+    {
+        _hpImage.fillAmount = (float)PlayerBehavior.activePlayer.currentHealth / (float)PlayerBehavior.activePlayer.maxHealth;
     }
 }

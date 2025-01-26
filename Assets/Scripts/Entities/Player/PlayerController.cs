@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -31,6 +32,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float interactionRange;
     [SerializeField] float interactionRadius;
     GameObject _pointedInteraction;
+    public Action<ItemType> OnPlayerPickUpItem;
+    public Action<ItemType> OnPlayerUseItem;
+    ItemType _currentItem = ItemType.NONE;
 
     CharacterController _cc;
 
@@ -68,6 +72,7 @@ public class PlayerController : MonoBehaviour
         Shooting();
         CheckInteractions(interactionRange, interactionRadius);
         Interaction();
+        UseItem();
     }
     void Movement()
     {
@@ -121,7 +126,6 @@ public class PlayerController : MonoBehaviour
             if (Physics.Raycast(playerTop,transform.up,out hit,0.5f,LayerMask.GetMask("Obstacle")))
             {
                 float possibleStep = Vector3.Distance(playerTop, hit.point);
-                Debug.Log("roof, posible step is: " + possibleStep);
                 if(possibleStep < 0.1f) { possibleStep = 0f; }
                 transform.localScale = Vector3.MoveTowards(
                     transform.localScale,
@@ -195,11 +199,60 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E) && _pointedInteraction != null)
         {
-            _pointedInteraction.GetComponent<ItemSpawner>()?.GetItem();
+            //getting item from spawner
+            if(_pointedInteraction.GetComponent<ItemSpawner>() != null)
+            {
+                ItemType itemPickedUp = _pointedInteraction.GetComponent<ItemSpawner>().GetItem();
+
+                switch(itemPickedUp) 
+                {
+                    case ItemType.NONE:
+                        return;
+                    case ItemType.BUBBLE_TEA:
+                        OnPlayerPickUpItem?.Invoke(itemPickedUp);
+                        OnPlayerUseItem?.Invoke(itemPickedUp);
+                        PlayerBehavior.activePlayer.HealPlayer(4);
+                        return;
+                    case ItemType.GUM_GRENADE:
+                        OnPlayerPickUpItem?.Invoke(itemPickedUp);
+                        _currentItem = itemPickedUp;
+                        return;
+                    case ItemType.GUM_SHIELD:
+                        OnPlayerPickUpItem?.Invoke(itemPickedUp);
+                        _currentItem = itemPickedUp;
+                        return;
+                }
+            }
+        }
+    }
+    
+    void UseItem()
+    {
+        if (Input.GetKeyDown(KeyCode.Mouse1) && _currentItem != ItemType.NONE)
+        {
+            switch(_currentItem)
+            {
+                case ItemType.GUM_GRENADE:
+                    Debug.Log("GRENADE!");
+                    break;
+                case ItemType.GUM_SHIELD:
+                    Debug.Log("SHIELD!");
+                    break;
+            }
+
+            OnPlayerUseItem?.Invoke(_currentItem);
+            _currentItem = ItemType.NONE;
         }
     }
 
-    public void DrawDebugCylinder(Vector3 startPoint, Vector3 endPoint, float radius, int segments = 20)
+
+
+
+
+
+
+    //Debug ----------------------------------------------------------------------------------------------------------------- Debug
+    void DrawDebugCylinder(Vector3 startPoint, Vector3 endPoint, float radius, int segments = 20)
     {
         // Vector representing the axis of the cylinder
         Vector3 axis = endPoint - startPoint;
