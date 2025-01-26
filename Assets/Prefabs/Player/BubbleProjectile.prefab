@@ -155,3 +155,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1280
   _entityTarget: Enemy
+  _bubbleHitSound:
+    Guid:
+      Data1: 1802062806
+      Data2: 1125201749
+      Data3: -2015129456
+      Data4: -1209368369
+    Path: event:/Shield gum damage

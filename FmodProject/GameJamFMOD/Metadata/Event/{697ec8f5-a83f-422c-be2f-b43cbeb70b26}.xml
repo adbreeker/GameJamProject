@@ -238,9 +238,6 @@
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{7966eb91-d707-4345-b7a9-2c4e8008c71c}">
-		<property name="volume">
-			<value>-1.5</value>
-		</property>
 		<relationship name="effectChain">
 			<destination>{e8fa19ca-18dc-4012-9589-4ec3c300f158}</destination>
 		</relationship>
@@ -770,7 +767,7 @@
 	</object>
 	<object class="EventMixerGroup" id="{8339f201-3c69-4175-a9a0-81ae9ac639c1}">
 		<property name="volume">
-			<value>-6.5</value>
+			<value>-6</value>
 		</property>
 		<property name="name">
 			<value>bass call</value>
@@ -809,7 +806,7 @@
 	</object>
 	<object class="EventMixerGroup" id="{e3ea853b-b031-4b55-b61b-f4676e774902}">
 		<property name="volume">
-			<value>-4.5</value>
+			<value>-3.5</value>
 		</property>
 		<property name="name">
 			<value>bass respo</value>
@@ -1046,9 +1043,6 @@
 			<value>11.16279597110162</value>
 		</property>
 		<property name="quantizationInterval">
-			<value>1</value>
-		</property>
-		<property name="transitionOffset">
 			<value>1</value>
 		</property>
 		<relationship name="timeline">

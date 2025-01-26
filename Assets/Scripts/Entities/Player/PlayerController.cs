@@ -40,6 +40,8 @@ public class PlayerController : MonoBehaviour
     [Header("Sounds:")]
     [SerializeField] EventReference _drinkSound;
     [SerializeField] EventReference _shootSound;
+    [SerializeField] EventReference _greenGumGranadeSound;
+    [SerializeField] EventReference _yellowGumShieldSound;
 
     GameObject _pointedInteraction;
     public Action<ItemType> OnPlayerPickUpItem;
@@ -254,10 +256,12 @@ public class PlayerController : MonoBehaviour
             switch(_currentItem)
             {
                 case ItemType.GUM_GRENADE:
+                    RuntimeManager.PlayOneShot(_greenGumGranadeSound);
                     StartCoroutine(ThrowGumGrenadeDeleyed(0.5f));
                     break;
                 case ItemType.GUM_SHIELD:
-                    Instantiate(_gumShieldPrefab, _playerCamera.transform);
+                    RuntimeManager.PlayOneShot(_yellowGumShieldSound);
+                    StartCoroutine(UseGumShieldDeleyed(0.5f));
                     break;
             }
 
@@ -274,7 +278,12 @@ public class PlayerController : MonoBehaviour
                         .GetComponent<GumGrenadeController>().ThrowInDirection(_playerCamera.transform.forward, 10f, 3f);
     }
 
-
+    IEnumerator UseGumShieldDeleyed(float deley)
+    {
+        yield return new WaitForSeconds(deley);
+        Vector3 mouthPos = (_playerCamera.transform.position - new Vector3(0f, 0.2f, 0f)) + _playerCamera.transform.forward;
+        Instantiate(_gumShieldPrefab, _playerCamera.transform);
+    }
 
 
 

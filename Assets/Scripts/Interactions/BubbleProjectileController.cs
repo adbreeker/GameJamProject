@@ -1,3 +1,4 @@
+using FMODUnity;
 using NaughtyAttributes;
 using System.Collections;
 using UnityEngine;
@@ -8,6 +9,7 @@ public class BubbleProjectileController : MonoBehaviour
     [SerializeField] GameObject _impactPrefab;
     [SerializeField] LayerMask _collisionLayers;
     [SerializeField, Layer] string _entityTarget;
+    [SerializeField] EventReference _bubbleHitSound;
 
     private void Start()
     {
@@ -25,13 +27,17 @@ public class BubbleProjectileController : MonoBehaviour
         if((_collisionLayers.value & (1 << other.gameObject.layer)) != 0)
         {
             //Debug.Log("bubble collides with - " + other.gameObject.name);
-            Instantiate(_impactPrefab,
+            GameObject spawnedEffect = Instantiate(_impactPrefab,
                 (transform.position - _rigidbody.linearVelocity.normalized*0.3f),
                 Quaternion.identity);
 
             if (other.gameObject.layer == LayerMask.NameToLayer(_entityTarget))
             {
                 other.gameObject.GetComponent<EntityBehavior>().HitEntity();
+            }
+            else
+            {
+                AudioManager.Instance.PlayOneShotSpatialized(_bubbleHitSound, spawnedEffect.transform);
             }
 
             Destroy(gameObject);

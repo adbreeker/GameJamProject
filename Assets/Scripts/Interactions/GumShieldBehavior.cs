@@ -1,9 +1,11 @@
 using System.Collections;
+using FMODUnity;
 using UnityEngine;
 
 public class GumShieldBehavior : MonoBehaviour
 {
     [SerializeField] ParticleSystem _explosionEffect;
+    [SerializeField] EventReference _explosionSound;
 
     private void Start()
     {
@@ -13,7 +15,8 @@ public class GumShieldBehavior : MonoBehaviour
     IEnumerator DestroyShieldAfterDeley(float deley)
     {
         yield return new WaitForSeconds(deley);
-        Debug.Log("wybucham");
+
+        RuntimeManager.PlayOneShot(_explosionSound);
     }
 
     private void OnCollisionEnter(Collision collision)

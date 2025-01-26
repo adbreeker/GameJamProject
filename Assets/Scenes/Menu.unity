@@ -247,11 +247,11 @@ MonoBehaviour:
     Path: event:/ui
   _menuMusic:
     Guid:
-      Data1: 1769916661
-      Data2: 1110222911
-      Data3: 1018441662
-      Data4: 638302142
-    Path: event:/muzyka
+      Data1: 1854489611
+      Data2: 1204543402
+      Data3: 904269998
+      Data4: 659517406
+    Path: event:/menu music
 --- !u!1 &147840757
 GameObject:
   m_ObjectHideFlags: 0

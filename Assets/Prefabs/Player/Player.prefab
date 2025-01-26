@@ -227,6 +227,20 @@ MonoBehaviour:
       Data3: -731321691
       Data4: 1002894944
     Path: event:/player shot
+  _greenGumGranadeSound:
+    Guid:
+      Data1: -1281220478
+      Data2: 1231007005
+      Data3: -2071449685
+      Data4: 1286321692
+    Path: event:/green gum
+  _yellowGumShieldSound:
+    Guid:
+      Data1: 1003998456
+      Data2: 1286687526
+      Data3: -2076289356
+      Data4: 97888017
+    Path: event:/yellow gum usage
 --- !u!1 &6675697866105231865
 GameObject:
   m_ObjectHideFlags: 0

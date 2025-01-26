@@ -19615,6 +19615,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _explosionEffect: {fileID: 8821342691581052471}
+  _explosionSound:
+    Guid:
+      Data1: 1136458874
+      Data2: 1082970222
+      Data3: -1216869467
+      Data4: 665843329
+    Path: event:/Shield explosion
 --- !u!1 &5932596447842642314
 GameObject:
   m_ObjectHideFlags: 0
