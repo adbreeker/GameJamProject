@@ -153,5 +153,5 @@ MonoBehaviour:
   _impactPrefab: {fileID: 7809048884419005517, guid: 661e0998c9693684f8c154cb39157450, type: 3}
   _collisionLayers:
     serializedVersion: 2
-    m_Bits: 1088
+    m_Bits: 1216
   _entityTarget: Player
