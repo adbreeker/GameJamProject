@@ -8,8 +8,6 @@ public class SpawningEnemyState : EnemyState
     [SerializeField] private ShootingWalkingEnemyState _walkingState;
     [SerializeField] private EventReference _spawningSound;
 
-    private float _animationDuration = 1f;
-
     //---------------------------------------------------------------------------------------------------
     #region Implementing abstract methods
     public override void EnterState()
@@ -32,8 +30,10 @@ public class SpawningEnemyState : EnemyState
     {
         AudioManager.Instance.PlayOneShotSpatialized(_spawningSound, _stateMachine.transform);
 
-        yield return new WaitForSeconds(_animationDuration);
-        //some kind of particle
+        yield return new WaitForSeconds(0.5f);
+        MainSprite.gameObject.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+
         _stateMachine.ChangeState(_walkingState);
     }
 }

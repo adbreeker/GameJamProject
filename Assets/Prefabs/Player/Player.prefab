@@ -174,8 +174,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  <maxHealth>k__BackingField: 10
-  <currentHealth>k__BackingField: 10
+  <maxHealth>k__BackingField: 6
+  <currentHealth>k__BackingField: 6
   <isPlayerDead>k__BackingField: 0
   _healingPrefab: {fileID: 9017484664307500583, guid: ea854416577ce9e4a872172064d8f4b6, type: 3}
   _damagedSound:

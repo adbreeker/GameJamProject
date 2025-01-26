@@ -21,7 +21,7 @@ public class EnemyStateMachine : MonoBehaviour
     private bool _changingStateDisabled = false;
     private int _enemyHP = 3;
 
-    private void Awake()
+    private void Start()
     {
         InitializeState();
     }

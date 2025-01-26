@@ -160,7 +160,7 @@ MonoBehaviour:
   - {fileID: 4590522685149150556, guid: a11089efe21a3a542901bf96a5d5d1fe, type: 3}
   - {fileID: 4590522685149150556, guid: e5f8e763a22adaf49a362ddcfc1c9f07, type: 3}
   - {fileID: 4590522685149150556, guid: a982628e3983b704e88be7c941bf24ff, type: 3}
-  _maxSpawnDistanceFromPlayer: 50
+  _maxSpawnDistanceFromPlayer: 40
   _minSpawnDistanceFromPlayer: 12.5
   _addedTimePerWave: 10
   _addedEnemiesPerWave: 3
