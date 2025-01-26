@@ -14697,6 +14697,7 @@ GameObject:
   - component: {fileID: 557369627544001259}
   - component: {fileID: 4572086274319030015}
   - component: {fileID: 2714526531341298201}
+  - component: {fileID: 982624082329441771}
   m_Layer: 7
   m_Name: GumShieldEffect
   m_TagString: Untagged
@@ -19601,6 +19602,19 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 2
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &982624082329441771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4837788582098335056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 618488271dd56aa4aaadcd0de3ddd691, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _explosionEffect: {fileID: 8821342691581052471}
 --- !u!1 &5932596447842642314
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,4 +1,5 @@
 using NaughtyAttributes;
+using System.Collections;
 using UnityEngine;
 
 public class BubbleProjectileController : MonoBehaviour
@@ -7,6 +8,11 @@ public class BubbleProjectileController : MonoBehaviour
     [SerializeField] GameObject _impactPrefab;
     [SerializeField] LayerMask _collisionLayers;
     [SerializeField, Layer] string _entityTarget;
+
+    private void Start()
+    {
+        StartCoroutine(DestroyAfterTime(10f));
+    }
 
     public void ShootInDirection(Vector3 direction, float force = 7.5f)
     {
@@ -30,5 +36,11 @@ public class BubbleProjectileController : MonoBehaviour
 
             Destroy(gameObject);
         }
+    }
+
+    IEnumerator DestroyAfterTime(float time)
+    {
+        yield return new WaitForSeconds(time);
+        Destroy(gameObject);
     }
 }
