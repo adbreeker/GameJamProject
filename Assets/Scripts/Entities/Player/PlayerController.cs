@@ -106,7 +106,7 @@ public class PlayerController : MonoBehaviour
         }
 
         //sprinting
-        if(Input.GetKey(KeyCode.LeftControl))
+        if(Input.GetKey(KeyCode.Space))
         {
             _playerVelocity.x *= crouchSpeedMultiplier;
             _playerVelocity.z *= crouchSpeedMultiplier;
@@ -123,7 +123,7 @@ public class PlayerController : MonoBehaviour
 
     void Crouching()
     {
-        if (Input.GetKey(KeyCode.LeftControl))
+        if (Input.GetKey(KeyCode.Space))
         {
             transform.localScale = Vector3.MoveTowards(
                 transform.localScale, 
@@ -186,7 +186,11 @@ public class PlayerController : MonoBehaviour
 
             RuntimeManager.PlayOneShot(_shootSound);
             GameObject bubble = Instantiate(_projectilePrefab, _shootingOrigin.transform.position, Quaternion.identity);
-            bubble.GetComponent<BubbleProjectileController>().ShootInDirection(_playerCamera.transform.forward);
+            RaycastHit target;
+            Ray ray = new(_playerCamera.transform.position, _playerCamera.transform.forward);
+            Vector3 direction = Physics.Raycast(ray,out target, 50f, LayerMask.GetMask("Obstacle", "Enemy"), QueryTriggerInteraction.Ignore)? 
+                (target.point - _shootingOrigin.transform.position).normalized : (ray.GetPoint(30f) - _shootingOrigin.transform.position).normalized;
+            bubble.GetComponent<BubbleProjectileController>().ShootInDirection(direction);
         }
     }
 
