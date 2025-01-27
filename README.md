@@ -1,1 +1,1 @@
-Game Jam Poznan 2025
+Poznań global game jam 2025
