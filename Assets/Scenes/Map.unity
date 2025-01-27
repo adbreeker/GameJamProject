@@ -23,7 +23,7 @@ RenderSettings:
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
-  m_AmbientIntensity: 1
+  m_AmbientIntensity: 1.07
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
@@ -11044,6 +11044,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BubbleProjectile
       objectReference: {fileID: 0}
+    - target: {fileID: 7457173310827220616, guid: c22cd5d274772674cb3a49c91c5b577a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -21682,6 +21686,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HUD
       objectReference: {fileID: 0}
+    - target: {fileID: 8858111652685157248, guid: d44b41a4681090443a74dccf10568eaa, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -22726,6 +22734,10 @@ PrefabInstance:
     - target: {fileID: 7457173310827220616, guid: 5bb5d576c2f513e458cd644b5850092e, type: 3}
       propertyPath: m_Name
       value: BubbleEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7457173310827220616, guid: 5bb5d576c2f513e458cd644b5850092e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -25038,19 +25050,39 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 404926209367758124, guid: 1a01f5252d684484798452c4fa074330, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.323
+      value: -4.669
+      objectReference: {fileID: 0}
+    - target: {fileID: 404926209367758124, guid: 1a01f5252d684484798452c4fa074330, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.696
       objectReference: {fileID: 0}
     - target: {fileID: 404926209367758124, guid: 1a01f5252d684484798452c4fa074330, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 7.199
+      value: 8.647
+      objectReference: {fileID: 0}
+    - target: {fileID: 404926209367758124, guid: 1a01f5252d684484798452c4fa074330, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9598606
+      objectReference: {fileID: 0}
+    - target: {fileID: 404926209367758124, guid: 1a01f5252d684484798452c4fa074330, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.036035363
+      objectReference: {fileID: 0}
+    - target: {fileID: 404926209367758124, guid: 1a01f5252d684484798452c4fa074330, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.27795717
+      objectReference: {fileID: 0}
+    - target: {fileID: 404926209367758124, guid: 1a01f5252d684484798452c4fa074330, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.010435147
       objectReference: {fileID: 0}
     - target: {fileID: 404926209367758124, guid: 1a01f5252d684484798452c4fa074330, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: -4.3
       objectReference: {fileID: 0}
     - target: {fileID: 404926209367758124, guid: 1a01f5252d684484798452c4fa074330, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: -32.3
       objectReference: {fileID: 0}
     - target: {fileID: 404926209367758124, guid: 1a01f5252d684484798452c4fa074330, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
