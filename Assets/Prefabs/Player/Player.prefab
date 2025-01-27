@@ -205,11 +205,11 @@ MonoBehaviour:
   crouchingSpeed: 2
   uncrouchingSpeed: 3
   _playerCamera: {fileID: 8700194355445646484}
-  viewSensitivity: 150
+  viewSensitivity: 140
   _shootingOrigin: {fileID: 499838515061896793}
   _projectilePrefab: {fileID: 7457173310827220616, guid: c22cd5d274772674cb3a49c91c5b577a, type: 3}
   _shootingCooldown: 0.3
-  _interactionRange: 1.5
+  _interactionRange: 2
   _interactionRadius: 0.3
   _gumGrenadePrefab: {fileID: 1172416939486387920, guid: 8a6964667dbc0bc4d99ec9885cf83b2f, type: 3}
   _gumShieldPrefab: {fileID: 4837788582098335056, guid: a559caa04243804498b0e3202ac759a1, type: 3}
