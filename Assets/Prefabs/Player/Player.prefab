@@ -144,7 +144,7 @@ CharacterController:
   m_Radius: 0.5
   m_SlopeLimit: 40
   m_StepOffset: 0.3
-  m_SkinWidth: 0.08
+  m_SkinWidth: 0.01
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &6859583138707710920
@@ -203,7 +203,7 @@ MonoBehaviour:
   gravityForce: -10
   crouchHeightMultiplier: 0.5
   crouchingSpeed: 2
-  uncrouchingSpeed: 3
+  uncrouchingSpeed: 2
   _playerCamera: {fileID: 8700194355445646484}
   viewSensitivity: 140
   _shootingOrigin: {fileID: 499838515061896793}

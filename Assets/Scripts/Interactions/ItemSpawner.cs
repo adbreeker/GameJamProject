@@ -28,7 +28,8 @@ public class ItemSpawner : MonoBehaviour
         _gumGrenadeIcon.SetActive(false);
         _gumShieldIcon.SetActive(false);
 
-        SpawnRandomItem();
+        if(currentItem == ItemType.NONE) { SpawnRandomItem(); }
+        else { SpawnItem(currentItem); }
     }
 
     private void FixedUpdate()
@@ -46,7 +47,12 @@ public class ItemSpawner : MonoBehaviour
 
         currentItem = randomItem;
 
-        switch(currentItem)
+        SpawnItem(randomItem);
+    }
+
+    void SpawnItem(ItemType itemType)
+    {
+        switch (itemType)
         {
             case ItemType.NONE:
                 StartCoroutine(SpawnItemAfterDeley(UnityEngine.Random.Range(20f, 45f)));

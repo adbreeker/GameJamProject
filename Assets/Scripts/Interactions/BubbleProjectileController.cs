@@ -13,7 +13,7 @@ public class BubbleProjectileController : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(DestroyAfterTime(10f));
+        Destroy(gameObject, 10f);
     }
 
     public void ShootInDirection(Vector3 direction, float force = 7.5f)
@@ -42,11 +42,5 @@ public class BubbleProjectileController : MonoBehaviour
 
             Destroy(gameObject);
         }
-    }
-
-    IEnumerator DestroyAfterTime(float time)
-    {
-        yield return new WaitForSeconds(time);
-        Destroy(gameObject);
     }
 }

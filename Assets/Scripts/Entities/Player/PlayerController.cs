@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     public float crouchingSpeed;
     public float uncrouchingSpeed;
     Vector3 _startScale;
+    public bool isCrouching { get; private set; }
 
     [Header("View variables:")]
     [SerializeField] Camera _playerCamera;
@@ -94,7 +95,7 @@ public class PlayerController : MonoBehaviour
         Vector3 direction = transform.right * horizontal + transform.forward * vertical;
 
         //walking
-        if(direction.magnitude > 0)
+        if (direction.magnitude > 0)
         {
             _playerVelocity.x = direction.normalized.x * movementSpeed;
             _playerVelocity.z = direction.normalized.z * movementSpeed;
@@ -105,15 +106,15 @@ public class PlayerController : MonoBehaviour
             _playerVelocity.z = 0f;
         }
 
-        //sprinting
-        if(Input.GetKey(KeyCode.Space))
+        //movement speed
+        if (isCrouching)
         {
             _playerVelocity.x *= crouchSpeedMultiplier;
             _playerVelocity.z *= crouchSpeedMultiplier;
         }
-        else 
+        else
         {
-            if(Input.GetKey(KeyCode.LeftShift))
+            if (Input.GetKey(KeyCode.LeftShift))
             {
                 _playerVelocity.x *= sprintSpeedMultiplier;
                 _playerVelocity.z *= sprintSpeedMultiplier;
@@ -125,32 +126,45 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Space))
         {
+            isCrouching = true;
+
             transform.localScale = Vector3.MoveTowards(
-                transform.localScale, 
-                new Vector3(_startScale.x, _startScale.y * crouchHeightMultiplier, _startScale.z), 
+                transform.localScale,
+                new Vector3(_startScale.x, _startScale.y * crouchHeightMultiplier, _startScale.z),
                 crouchingSpeed * Time.deltaTime);
+
         }
-        else if(transform.localScale != _startScale)
+        else if (transform.localScale != _startScale)
         {
             Vector3 playerTop = transform.TransformPoint(_cc.center) + transform.up * (_cc.height * transform.lossyScale.y / 2f);
             RaycastHit hit;
 
-            if (Physics.Raycast(playerTop,transform.up,out hit,0.5f,LayerMask.GetMask("Obstacle")))
+            float possibleStep = uncrouchingSpeed * Time.deltaTime;
+
+            if (Physics.Raycast(playerTop, transform.up, out hit, _startScale.y*crouchHeightMultiplier , LayerMask.GetMask("Obstacle")))
             {
-                float possibleStep = Vector3.Distance(playerTop, hit.point);
-                if(possibleStep < 0.1f) { possibleStep = 0f; }
+                possibleStep = (Vector3.Distance(playerTop, hit.point) - Math.Abs(transform.position.y - transform.localScale.y)) / 2f;
+
                 transform.localScale = Vector3.MoveTowards(
                     transform.localScale,
                     new Vector3(_startScale.x, _startScale.y, _startScale.z),
-                    Mathf.Min(uncrouchingSpeed * Time.deltaTime, possibleStep * 0.1f));
+                    possibleStep);
+
+                ChangePosition(transform.position += Vector3.up * possibleStep);
             }
             else
             {
                 transform.localScale = Vector3.MoveTowards(
                     transform.localScale,
                     new Vector3(_startScale.x, _startScale.y, _startScale.z),
-                    uncrouchingSpeed * Time.deltaTime);
+                    possibleStep);
+
+                ChangePosition(transform.position += Vector3.up * possibleStep);
             }
+        }
+        else
+        {
+            isCrouching = false;
         }
     }
 
@@ -165,11 +179,11 @@ public class PlayerController : MonoBehaviour
         _playerCamera.transform.localRotation = Quaternion.Euler(_viewRotation);
 
         transform.Rotate(transform.up * mouseX);
-    }   
-    
+    }
+
     void Gravity()
     {
-        if(_cc.isGrounded && _playerVelocity.y < -2f)
+        if (_cc.isGrounded && _playerVelocity.y < -2f)
         {
             _playerVelocity.y = -2f;
         }
@@ -179,7 +193,7 @@ public class PlayerController : MonoBehaviour
 
     void Shooting()
     {
-        if(Input.GetKeyDown(KeyCode.Mouse0) && _isAbleToShoot)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && _isAbleToShoot)
         {
             _isAbleToShoot = false;
             StartCoroutine(ShootingCooldown());
@@ -188,7 +202,7 @@ public class PlayerController : MonoBehaviour
             GameObject bubble = Instantiate(_projectilePrefab, _shootingOrigin.transform.position, Quaternion.identity);
             RaycastHit target;
             Ray ray = new(_playerCamera.transform.position, _playerCamera.transform.forward);
-            Vector3 direction = Physics.Raycast(ray,out target, 50f, LayerMask.GetMask("Obstacle", "Enemy"), QueryTriggerInteraction.Ignore)? 
+            Vector3 direction = Physics.Raycast(ray, out target, 50f, LayerMask.GetMask("Obstacle", "Enemy"), QueryTriggerInteraction.Ignore) ?
                 (target.point - _shootingOrigin.transform.position).normalized : (ray.GetPoint(30f) - _shootingOrigin.transform.position).normalized;
             bubble.GetComponent<BubbleProjectileController>().ShootInDirection(direction);
         }
@@ -209,9 +223,9 @@ public class PlayerController : MonoBehaviour
 
         Collider[] hitColliders = Physics.OverlapCapsule(startPoint, endPoint, radius, LayerMask.GetMask("Interaction"), QueryTriggerInteraction.Collide);
 #if UNITY_EDITOR
-        DrawDebugCylinder(startPoint, endPoint, radius);
+        //DrawDebugCylinder(startPoint, endPoint, radius);
 #endif
-        if(hitColliders.Length > 0)
+        if (hitColliders.Length > 0)
         {
             _pointedInteraction = hitColliders[0].gameObject;
         }
@@ -226,11 +240,11 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E) && _pointedInteraction != null)
         {
             //getting item from spawner
-            if(_pointedInteraction.GetComponent<ItemSpawner>() != null)
+            if (_pointedInteraction.GetComponent<ItemSpawner>() != null)
             {
                 ItemType itemPickedUp = _pointedInteraction.GetComponent<ItemSpawner>().GetItem();
 
-                switch(itemPickedUp) 
+                switch (itemPickedUp)
                 {
                     case ItemType.NONE:
                         return;
@@ -252,12 +266,12 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
-    
+
     void UseItem()
     {
         if (Input.GetKeyDown(KeyCode.Mouse1) && _currentItem != ItemType.NONE)
         {
-            switch(_currentItem)
+            switch (_currentItem)
             {
                 case ItemType.GUM_GRENADE:
                     RuntimeManager.PlayOneShot(_greenGumGranadeSound);
@@ -278,7 +292,7 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(deley);
         Vector3 mouthPos = (_playerCamera.transform.position - new Vector3(0f, 0.2f, 0f)) + _playerCamera.transform.forward;
-        Instantiate(_gumGrenadePrefab,mouthPos, Quaternion.identity)
+        Instantiate(_gumGrenadePrefab, mouthPos, Quaternion.identity)
                         .GetComponent<GumGrenadeController>().ThrowInDirection(_playerCamera.transform.forward, 10f, 3f);
     }
 
@@ -289,7 +303,12 @@ public class PlayerController : MonoBehaviour
         Instantiate(_gumShieldPrefab, _playerCamera.transform);
     }
 
-
+    public void ChangePosition(Vector3 newPosition)
+    {
+        _cc.enabled = false;
+        transform.position = newPosition;
+        _cc.enabled = true;
+    }
 
     //Debug ----------------------------------------------------------------------------------------------------------------- Debug
     void DrawDebugCylinder(Vector3 startPoint, Vector3 endPoint, float radius, int segments = 20)
